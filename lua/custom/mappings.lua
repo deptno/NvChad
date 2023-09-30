@@ -27,13 +27,13 @@ M.general = {
       function()
         vim.cmd("bnext")
       end,
-      "Toggle softwrap"
+      "Next buffer"
     },
     ["[b"] = {
       function()
         vim.cmd("bprevious")
       end,
-      "Toggle softwrap"
+      "Previous buffer"
     },
   },
   v = {
@@ -41,7 +41,7 @@ M.general = {
       function()
         vim.cmd("vert help <cword>")
       end,
-      "vertical help <cword> in visual mode"
+      "Vertical help <cword> in visual mode"
     },
   }
 }
@@ -57,7 +57,7 @@ M.nvimtree = {
       function()
         require("nvim-tree.api").tree.change_root(vim.fn.expand("%:p:h"))
       end,
-      "change current directory"
+      "Change current directory"
     },
   },
 }
