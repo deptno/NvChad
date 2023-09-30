@@ -23,6 +23,18 @@ M.general = {
       end,
       "Toggle softwrap"
     },
+    ["]b"] = {
+      function()
+        vim.cmd("bnext")
+      end,
+      "Toggle softwrap"
+    },
+    ["[b"] = {
+      function()
+        vim.cmd("bprevious")
+      end,
+      "Toggle softwrap"
+    },
   }
 }
 M.nvimtree = {
