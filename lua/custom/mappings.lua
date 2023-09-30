@@ -39,7 +39,7 @@ M.general = {
   v = {
     ["H"] = {
       function()
-        vim.cmd("vert help <cword>")
+        vim.cmd("vert help " .. vim.fn.expand("<cword>"))
       end,
       "Vertical help <cword> in visual mode"
     },
