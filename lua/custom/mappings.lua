@@ -35,6 +35,14 @@ M.general = {
       end,
       "Toggle softwrap"
     },
+  },
+  v = {
+    ["H"] = {
+      function()
+        vim.cmd("vert help <cword>")
+      end,
+      "vertical help <cword> in visual mode"
+    },
   }
 }
 M.nvimtree = {
