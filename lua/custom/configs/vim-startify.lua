@@ -2,7 +2,7 @@
 vim.g.startify_bookmarks = {
   '~/.zshrc',
   '~/.tmux.conf',
-  '~/.config/nvim/lua/custom/init.lua',
+  '~/.config/nvim/init.lua',
   '~/.gitconfig',
   '~/.finicky.js',
   '~/.taskrc',
