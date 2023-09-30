@@ -33,6 +33,12 @@ M.nvimtree = {
       end,
       "Toggle nvimtree"
     },
+    ["cd."] = {
+      function()
+        require("nvim-tree.api").tree.change_root(vim.loop.cwd())
+      end,
+      "change current directory"
+    },
   },
 }
 M.gitsigns = {
