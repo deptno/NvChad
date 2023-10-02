@@ -127,7 +127,6 @@ M.gitsigns = {
     },
   }
 }
-
 M.tabufline = {
   n = {
     ["<]b>"] = {
@@ -149,7 +148,6 @@ M.tabufline = {
       "Close buffer",
     },
   },
-
 }
 
 return M
