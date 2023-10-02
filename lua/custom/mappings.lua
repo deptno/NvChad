@@ -11,6 +11,10 @@ M.disabled = {
     ["<leader>ph"] = "",
     ["<leader>gb"] = "",
     ["<leader>td"] = "",
+    -- tabufline
+    ["<leader>x"] = "",
+    ["<tab>"] = "",
+    ["<S-tab>"] = "",
   }
 }
 
@@ -122,6 +126,30 @@ M.gitsigns = {
       "Toggle deleted",
     },
   }
+}
+
+M.tabufline = {
+  n = {
+    ["<]b>"] = {
+      function()
+        require("nvchad.tabufline").tabuflineNext()
+      end,
+      "Goto next buffer",
+    },
+    ["[b"] = {
+      function()
+        require("nvchad.tabufline").tabuflinePrev()
+      end,
+      "Goto prev buffer",
+    },
+    ["-b"] = {
+      function()
+        require("nvchad.tabufline").close_buffer()
+      end,
+      "Close buffer",
+    },
+  },
+
 }
 
 return M
