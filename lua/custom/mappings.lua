@@ -57,7 +57,13 @@ M.nvimtree = {
       function()
         require("nvim-tree.api").tree.change_root(vim.fn.expand("%:p:h"))
       end,
-      "Change current directory"
+      "Change working directory to current directory"
+    },
+    ["cd.."] = {
+      function()
+        require("nvim-tree.api").tree.change_root(vim.fn.expand("%:p:h:h"))
+      end,
+      "Change working directory to parent directory"
     },
   },
 }
