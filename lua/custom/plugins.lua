@@ -87,4 +87,10 @@ return {
       require('neogit').setup()
     end,
   },
+  {
+    "simrat39/symbols-outline.nvim",
+    init = function ()
+      require("symbols-outline").setup()
+    end
+  },
 }
