@@ -76,4 +76,15 @@ return {
       require("rest-nvim").setup(config)
     end
   },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "sindrets/diffview.nvim",
+    },
+    init = function ()
+      require('neogit').setup()
+    end,
+  },
 }
