@@ -149,5 +149,15 @@ M.tabufline = {
     },
   },
 }
+M["symbols-outline"] = {
+  n = {
+    ["<leader>1"] = {
+      function()
+        require("symbols-outline").toggle_outline()
+      end,
+      "Toggle symbol-outline"
+    }
+  }
+}
 
 return M
