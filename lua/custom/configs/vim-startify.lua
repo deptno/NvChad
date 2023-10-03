@@ -25,7 +25,7 @@ local get_git_files = function ()
   return ret
 end
 
--- https://github.com/deptno/.config/blob/master/.config/nvim/lua/user/startify.lua
+-- https://github.com/deptno/.config/blob/8bb421a122c30b172f3cd8ec9ac0f8894fe46bc5/.config/nvim/lua/user/startify.lua
 vim.g.startify_bookmarks = {
   { bz = '~/.zshrc' },
   { bg = '~/.gitconfig' },
