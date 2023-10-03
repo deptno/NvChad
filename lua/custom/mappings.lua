@@ -179,5 +179,14 @@ M["symbols-outline"] = {
     }
   }
 }
+M.startify = {
+  n = {
+    ["<leader>s"] = {
+      function ()
+        vim.cmd("Startify")
+      end
+    }
+  }
+}
 
 return M

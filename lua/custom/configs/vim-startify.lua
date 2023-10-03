@@ -79,6 +79,4 @@ endfunction
 
 command! StartifySaveBranchSession ':SSave! ' . GetUniqueSessionName()
 command! StartifyLoadBranchSession ':SLoad ' . GetUniqueSessionName()
-
-nnoremap <silent> ;s :Startify<CR>
 ]]
