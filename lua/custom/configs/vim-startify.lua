@@ -43,6 +43,7 @@ vim.g.startify_custom_header = {}
 -- sessions wrapper 를 만들기 귀찮아서 처리
 vim.g.startify_custom_indices = {
   'cn',
+  'dn',
   'p0',
   'pd',
   'pt',
