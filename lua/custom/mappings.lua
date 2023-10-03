@@ -137,6 +137,12 @@ M.gitsigns = {
       end,
       "Stage stage hunk",
     },
+    [",q"] = {
+      function()
+        require("gitsigns").setqflist()
+      end,
+      "Set qf list",
+    },
   },
   v = {
     [",r"] = {
