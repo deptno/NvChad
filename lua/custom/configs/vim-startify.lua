@@ -55,9 +55,9 @@ vim.g.startify_custom_indices = {
 }
 vim.g.startify_lists = {
     { type = 'sessions', header = { '   Sessions' } },
-    { type = get_git_files, header = { '   💻 git files' } },
-    { type = 'files', header = { '   🕘 recent ' } },
-    { type = 'dir', header = { '   MRU ' .. vim.fn.getcwd() } },
+    { type = get_git_files, header = { '   💻 Git files' } },
+    { type = 'files', header = { '   🕘 Recent ' } },
+    { type = 'dir', header = { '   📂 Current directory ' .. vim.fn.getcwd() } },
     { type = 'commands', header = { '   Commands' } },
     { type = 'bookmarks', header = { '   Bookmarks' } },
 }
