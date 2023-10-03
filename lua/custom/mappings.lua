@@ -39,6 +39,18 @@ M.general = {
       end,
       "Previous buffer"
     },
+    ["cd."] = {
+      function()
+        vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
+      end,
+      "Change working directory to current directory"
+    },
+    ["cd.."] = {
+      function()
+        vim.api.nvim_set_current_dir("..")
+      end,
+      "Change working directory to parent directory"
+    },
   },
   v = {
     ["H"] = {
@@ -56,18 +68,6 @@ M.nvimtree = {
         require("nvim-tree.api").tree.toggle()
       end,
       "Toggle nvimtree"
-    },
-    ["cd."] = {
-      function()
-        require("nvim-tree.api").tree.change_root(vim.fn.expand("%:p:h"))
-      end,
-      "Change working directory to current directory"
-    },
-    ["cd.."] = {
-      function()
-        require("nvim-tree.api").tree.change_root(vim.fn.expand("%:p:h:h"))
-      end,
-      "Change working directory to parent directory"
     },
   },
 }
