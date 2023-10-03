@@ -125,6 +125,32 @@ M.gitsigns = {
       end,
       "Toggle deleted",
     },
+    [",s"] = {
+      function()
+        require("gitsigns").stage_hunk()
+      end,
+      "Stage stage hunk",
+    },
+    [",S"] = {
+      function()
+        require("gitsigns").undo_stage_hunk()
+      end,
+      "Stage stage hunk",
+    },
+  },
+  v = {
+    [",r"] = {
+      function()
+        require("gitsigns").reset_hunk({vim.fn.line('.'), vim.fn.line('v')})
+      end,
+      "Reset stage hunk",
+    },
+    [",s"] = {
+      function()
+        require("gitsigns").stage_hunk({vim.fn.line('.'), vim.fn.line('v')})
+      end,
+      "Stage stage hunk",
+    },
   }
 }
 M.tabufline = {
