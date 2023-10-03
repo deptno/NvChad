@@ -27,18 +27,6 @@ M.general = {
       end,
       "Toggle softwrap"
     },
-    ["]b"] = {
-      function()
-        vim.cmd("bnext")
-      end,
-      "Next buffer"
-    },
-    ["[b"] = {
-      function()
-        vim.cmd("bprevious")
-      end,
-      "Previous buffer"
-    },
     ["cd."] = {
       function()
         vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
@@ -161,7 +149,7 @@ M.gitsigns = {
 }
 M.tabufline = {
   n = {
-    ["<]b>"] = {
+    ["]b"] = {
       function()
         require("nvchad.tabufline").tabuflineNext()
       end,
