@@ -17,6 +17,15 @@ return {
     end,
   },
   {
+    "lewis6991/gitsigns.nvim",
+    opts = function()
+      local opt = require("plugins.configs.others").gitsigns
+      opt.numhl = true
+
+      return opt
+    end,
+  },
+  {
     "vimwiki/vimwiki",
     lazy = false,
     init = function()
