@@ -41,8 +41,11 @@ vim.g.startify_custom_indices = {
   'p0',
   'pd',
   'pt',
+  'ph',
+  'pz',
   'wp',
   'ww',
+  'll',
 }
 vim.g.startify_lists = {
     { type = 'sessions', header = { '   Sessions' } },
@@ -54,6 +57,12 @@ vim.g.startify_lists = {
     { type = 'bookmarks', header = { '   Bookmarks' } },
 }
 
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = vim.api.nvim_create_augroup("StartifyAutoSaveSession", { clear = true }),
+  callback = function()
+    vim.cmd("SSave! _latest")
+  end,
+})
 vim.cmd [[
 function! GetUniqueSessionName()
   let path = fnamemodify(getcwd(), ':~:t')
