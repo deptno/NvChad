@@ -10,14 +10,19 @@ local map = function (fn, tlb)
 
   return ret
 end
-local mapToStartifyListItem = function (v)
-  return { line = v, path = v, }
-end
-local get_git_untracked = function ()
-  return map(mapToStartifyListItem, vim.fn.systemlist('git ls-files -o --exclude-standard 2>/dev/null'))
-end
-local get_git_modified = function ()
-  return map(mapToStartifyListItem, vim.fn.systemlist('git ls-files -m 2>/dev/null'))
+local get_git_files = function ()
+  local untracked = function (v) return { line = '❗' .. v, path = v, } end
+  local git_files = function (v) return { line = v, path = v, } end
+  local ret = {}
+
+  for _, v in ipairs(map(untracked, vim.fn.systemlist('git ls-files -o --exclude-standard 2>/dev/null'))) do
+    table.insert(ret, v)
+  end
+  for _, v in ipairs(map(git_files, vim.fn.systemlist('git ls-files -m 2>/dev/null'))) do
+    table.insert(ret, v)
+  end
+
+  return ret
 end
 
 -- https://github.com/deptno/.config/blob/master/.config/nvim/lua/user/startify.lua
@@ -49,8 +54,7 @@ vim.g.startify_custom_indices = {
 }
 vim.g.startify_lists = {
     { type = 'sessions', header = { '   Sessions' } },
-    { type = get_git_untracked, header = { '   ❗ git untracked' } },
-    { type = get_git_modified, header = { '   💬 git modified' } },
+    { type = get_git_files, header = { '   💻 git files' } },
     { type = 'files', header = { '   🕘 recent ' } },
     { type = 'dir', header = { '   MRU ' .. vim.fn.getcwd() } },
     { type = 'commands', header = { '   Commands' } },
