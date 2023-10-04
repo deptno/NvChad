@@ -76,16 +76,6 @@ return {
     end
   },
   {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    init = function ()
-      local config = require("custom.configs.rest")
-      require("rest-nvim").setup(config)
-    end
-  },
-  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
