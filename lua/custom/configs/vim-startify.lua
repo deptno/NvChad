@@ -104,6 +104,10 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
   group = vim.api.nvim_create_augroup("StartifyAutoSaveSession", { clear = true }),
   callback = create_previous_session_link,
 })
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = vim.api.nvim_create_augroup("StartifyVimLeavePreAutoSaveSession", { clear = true }),
+  callback = create_previous_session_link,
+})
 vim.cmd [[
 function! GetUniqueSessionName()
   let path = fnamemodify(getcwd(), ':~:t')
