@@ -12,13 +12,18 @@ local get_privous_session = function ()
   return current_session
 end
 local create_previous_session_link = function()
-  local session = get_privous_session()
+  local previous_session = get_privous_session()
 
-  if session then
-    local source = '../' .. vim.fs.basename(session)
+  if previous_session then
+    local source = '../' .. vim.fs.basename(previous_session)
 
     vim.fn.system('ln -fs ' .. source .. ' ' .. PREVIOUS_SESSION_LINK_PATH)
   end
+
+  vim.schedule(function ()
+    local current_session = get_privous_session()
+    print('session: ' .. previous_session .. ' -> '.. current_session)
+  end)
 end
 local switch_privous_session = function ()
   local current_session = vim.fn.resolve(PREVIOUS_SESSION_LINK_PATH)
