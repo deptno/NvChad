@@ -89,7 +89,7 @@ vim.g.startify_custom_indices = {
 }
 vim.g.switch_privous_session = switch_privous_session
 vim.g.startify_commands = {
-  { ll = { "previous session", "= vim.g.switch_privous_session()" }, },
+  { l = { "previous session", "= vim.g.switch_privous_session()" }, },
 }
 vim.g.startify_lists = {
     { type = 'commands', header = { '   Commands' } },
