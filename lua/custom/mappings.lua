@@ -1,4 +1,8 @@
 local M = {}
+local function cd(path)
+  print("cd " .. path)
+  vim.api.nvim_set_current_dir(path)
+end
 
 -- In order to disable a default keymap, use
 M.disabled = {
@@ -29,16 +33,29 @@ M.general = {
     },
     ["cd."] = {
       function()
-        vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
+        cd(vim.fn.expand("%:p:h"))
       end,
       "Change working directory to current directory"
     },
     ["cd.."] = {
       function()
-        vim.api.nvim_set_current_dir("..")
+        cd("..")
       end,
       "Change working directory to parent directory"
     },
+    ["cdp"] = {
+      function()
+        cd(vim.fn.system('git rev-parse --show-toplevel'):gsub('\n', ''))
+      end,
+      "Change working directory to current git root"
+    },
+    ["cdg"] = {
+      function()
+        cd("~/workspace/src/github.com")
+      end,
+      "Change working directory to parent directory"
+    },
+
   },
   v = {
     ["H"] = {
