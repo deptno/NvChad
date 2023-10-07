@@ -1,4 +1,5 @@
 local function create_toggle_to_fit_width()
+  -- buf_cache 대신 nvim_buf_set_var 를 이용할 수 있을지
   local buf_cache = {}
 
   return function()
