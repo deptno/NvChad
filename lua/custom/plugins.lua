@@ -110,4 +110,10 @@ return {
     'stevearc/dressing.nvim',
     opts = {},
   },
+  {
+    'rcarriga/nvim-notify',
+    init = function ()
+      vim.notify = require('notify')
+    end
+  }
 }
