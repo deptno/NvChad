@@ -1,38 +1,6 @@
 local M = {}
-local function cd(path)
-  print("cd " .. path)
-  vim.api.nvim_set_current_dir(path)
-end
-local function create_toggle_to_fit_width()
-  local buf_cache = {}
-
-  return function()
-    local bufnr = vim.fn.bufnr()
-    local lines = vim.fn.getbufline(bufnr, 1, '$')
-    local width = 30 -- minimum width
-
-    for _, v in ipairs(lines) do
-      local line_width = vim.fn.strdisplaywidth(v)
-      if line_width > width then
-        width = line_width
-      end
-    end
-
-    local current_width = vim.api.nvim_win_get_width(0)
-
-      print(vim.inspect(buf_cache))
-    if
-      current_width == width
-      and buf_cache[bufnr]
-      and buf_cache[bufnr] ~= current_width
-    then
-      vim.api.nvim_win_set_width(0, buf_cache[bufnr])
-    else
-      buf_cache[bufnr] = current_width
-      vim.api.nvim_win_set_width(0, width)
-    end
-  end
-end
+local cd = require('custom/lib/cd')
+local create_toggle_to_fit_width = require('custom/lib/create_toggle_to_fit_width')
 
 -- In order to disable a default keymap, use
 M.disabled = {
