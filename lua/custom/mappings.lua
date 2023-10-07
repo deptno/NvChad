@@ -1,6 +1,7 @@
 local M = {}
 local cd = require('custom/lib/cd')
 local create_toggle_to_fit_width = require('custom/lib/create_toggle_to_fit_width')
+local get_visual_selection_text = require('custom/lib/get_visual_selection_text')
 
 -- In order to disable a default keymap, use
 M.disabled = {
@@ -206,5 +207,43 @@ M.startify = {
     }
   }
 }
+M["nvim-notify"] = {
+  v = {
+    ["<C-r>"] = {
+      function()
+        local code_lines = get_visual_selection_text()
 
+        if code_lines then
+          if not string.match(code_lines[#code_lines], "^%s*return ") then
+            code_lines[#code_lines] = 'return ' .. code_lines[#code_lines]
+          end
+
+          local code = table.concat(code_lines, '\n')
+
+          vim.notify(code, vim.log.levels.INFO, {
+            title = "Run code",
+            on_open = function (win)
+              local buf = vim.api.nvim_win_get_buf(win)
+
+              -- FIXME:
+              vim.api.nvim_buf_set_option(buf, "filetype", "lua")
+
+              vim.schedule(function ()
+                local chunk = load('local runner = function()\n' .. code .. '\nend\nreturn runner()')
+                local success, result = pcall(chunk)
+
+                if success then
+                  vim.notify(tostring(result), vim.log.levels.INFO, { title = "Result" })
+                else
+                  vim.notify("Fail", vim.log.levels.ERROR, { title = "Result" })
+                end
+              end)
+            end
+          })
+        end
+      end,
+      "Toggle symbol-outline"
+    }
+  }
+}
 return M
