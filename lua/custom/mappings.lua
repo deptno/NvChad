@@ -224,15 +224,18 @@ M["nvim-notify"] = {
             title = "Run code",
             on_open = function (win)
               local buf = vim.api.nvim_win_get_buf(win)
+              local filetype = vim.bo.filetype
 
-              -- FIXME:
-              vim.api.nvim_buf_set_option(buf, "filetype", "lua")
+              vim.api.nvim_buf_set_option(buf, "filetype", filetype)
 
               vim.schedule(function ()
                 local chunk = load('local runner = function()\n' .. code .. '\nend\nreturn runner()')
                 local success, result = pcall(chunk)
 
                 if success then
+                  if type(result) == 'table' then
+                    result = vim.inspect(result)
+                  end
                   vim.notify(tostring(result), vim.log.levels.INFO, { title = "Result" })
                 else
                   vim.notify("Fail", vim.log.levels.ERROR, { title = "Result" })
