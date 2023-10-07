@@ -245,7 +245,7 @@ M["nvim-notify"] = {
           })
         end
       end,
-      "Toggle symbol-outline"
+      "Run code chunk(visual selection)"
     }
   }
 }
