@@ -31,8 +31,6 @@ local get_visual_selection_text = function ()
 
     return vim.api.nvim_buf_get_text(0, start_line, start_column, end_line, end_column, {})
   end
-
-  return ''
 end
 
 return get_visual_selection_text
