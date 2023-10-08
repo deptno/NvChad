@@ -3,6 +3,7 @@ local cd = require('custom/lib/cd')
 local create_toggle_to_fit_width = require('custom/lib/create_toggle_to_fit_width')
 local get_visual_selection_text = require('custom/lib/get_visual_selection_text')
 local tmux = require('custom/lib/create_tmux_split_window')
+local repl = require('custom/lib/repl')
 
 -- In order to disable a default keymap, use
 M.disabled = {
@@ -261,29 +262,7 @@ M["nvim-notify"] = {
 
           local code = table.concat(code_lines, '\n')
 
-          vim.notify(code, vim.log.levels.INFO, {
-            title = "Result",
-            on_open = function (win)
-              local buf = vim.api.nvim_win_get_buf(win)
-              local filetype = vim.bo.filetype
-
-              vim.api.nvim_buf_set_option(buf, "filetype", filetype)
-
-              vim.schedule(function ()
-                local chunk = load('local runner = function()\n' .. code .. '\nend\nreturn runner()')
-                local success, result = pcall(chunk)
-
-                if success then
-                  if type(result) == 'table' then
-                    result = vim.inspect(result)
-                  end
-                  vim.notify(tostring(result), vim.log.levels.INFO, { title = "Result" })
-                else
-                  vim.notify("Fail", vim.log.levels.ERROR, { title = "Result" })
-                end
-              end)
-            end
-          })
+          repl.run(code)
         end
       end,
       "Evaluate code chunk(visual selection)"
@@ -295,26 +274,7 @@ M["nvim-notify"] = {
         if code_lines then
           local code = table.concat(code_lines, '\n')
 
-          vim.notify(code, vim.log.levels.INFO, {
-            title = "Run code",
-            on_open = function (win)
-              local buf = vim.api.nvim_win_get_buf(win)
-              local filetype = vim.bo.filetype
-
-              vim.api.nvim_buf_set_option(buf, "filetype", filetype)
-
-              vim.schedule(function ()
-                local chunk = load('local runner = function()\n' .. code .. '\nend\nreturn runner()')
-                local success, result = pcall(chunk)
-
-                if success then
-                  vim.notify("Success", vim.log.levels.INFO)
-                else
-                  vim.notify("Fail", vim.log.levels.ERROR)
-                end
-              end)
-            end
-          })
+          repl.evaluate(code)
         end
       end,
       "Run code chunk(visual selection)"
