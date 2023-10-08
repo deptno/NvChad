@@ -2,6 +2,7 @@ local M = {}
 local cd = require('custom/lib/cd')
 local create_toggle_to_fit_width = require('custom/lib/create_toggle_to_fit_width')
 local get_visual_selection_text = require('custom/lib/get_visual_selection_text')
+local tmux = require('custom/lib/create_tmux_split_window')
 
 -- In order to disable a default keymap, use
 M.disabled = {
@@ -85,7 +86,19 @@ M.general = {
     ["<C-w>."] = {
       create_toggle_to_fit_width(),
       "Sync window width with buffer"
-    }
+    },
+    ["<F11>"] = {
+      function()
+        tmux.create_tmux_split_window_vertical()
+      end,
+      "Create tmux horizontal panel"
+    },
+    ["<F12>"] = {
+      function()
+        tmux.create_tmux_split_window_horizontal()
+      end,
+      "create tmux vertical panel"
+    },
   },
   v = {
     ["H"] = {
