@@ -11,19 +11,16 @@ local get_privous_session = function ()
 
   return current_session
 end
-local create_previous_session_link = function()
-  local previous_session = get_privous_session()
-
+local create_previous_session_link = function(previous_session)
   if previous_session then
     local source = '../' .. vim.fs.basename(previous_session)
 
     vim.fn.system('ln -fs ' .. source .. ' ' .. PREVIOUS_SESSION_LINK_PATH)
+
+    return true
   end
 
-  vim.schedule(function ()
-    local current_session = get_privous_session()
-    print('session: ' .. previous_session .. ' -> '.. current_session)
-  end)
+  return false
 end
 local switch_privous_session = function ()
   local current_session = vim.fn.resolve(PREVIOUS_SESSION_LINK_PATH)
@@ -107,7 +104,27 @@ vim.g.startify_lists = {
 
 vim.api.nvim_create_autocmd("SessionLoadPost", {
   group = vim.api.nvim_create_augroup("StartifyAutoSaveSession", { clear = true }),
-  callback = create_previous_session_link,
+  callback = function()
+    local previous_session = get_privous_session()
+
+    if previous_session then
+      local is_created = create_previous_session_link(previous_session)
+
+      if is_created then
+        vim.schedule(function ()
+          local current_session = get_privous_session()
+
+          if previous_session ~= current_session then
+            vim.notify(
+              vim.fs.basename(current_session),
+              vim.log.levels.INFO,
+              { title = 'Session changed' }
+            )
+          end
+        end)
+      end
+    end
+  end,
 })
 vim.api.nvim_create_autocmd("VimLeavePre", {
   group = vim.api.nvim_create_augroup("StartifyVimLeavePreAutoSaveSession", { clear = true }),
