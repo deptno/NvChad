@@ -24,6 +24,34 @@ M.disabled = {
 -- Your custom mappings
 M.general = {
   n = {
+    ["]t"] = {
+      function()
+        vim.cmd('tabnext')
+      end,
+      "Goto next tabpage",
+    },
+    ["[t"] = {
+      function()
+        vim.cmd('tabprevious')
+      end,
+      "Goto prev tabpage",
+    },
+    ["=t"] = {
+      function()
+        vim.cmd('tabnew')
+        require("telescope.builtin").find_files({
+          hidden=true,
+          layout_config={ prompt_position = "bottom" }
+        })
+      end,
+      "Create tabpage",
+    },
+    ["-t"] = {
+      function()
+        vim.cmd('tabclose')
+      end,
+      "Close tabpage",
+    },
     ["sw"] = {
       function()
         vim.wo.wrap = not vim.wo.wrap
