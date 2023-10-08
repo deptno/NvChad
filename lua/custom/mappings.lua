@@ -250,7 +250,7 @@ M.startify = {
 }
 M["nvim-notify"] = {
   v = {
-    ["<C-r>"] = {
+    ["<C-r>="] = {
       function()
         local code_lines = get_visual_selection_text()
 
@@ -262,7 +262,7 @@ M["nvim-notify"] = {
           local code = table.concat(code_lines, '\n')
 
           vim.notify(code, vim.log.levels.INFO, {
-            title = "Run code",
+            title = "Result",
             on_open = function (win)
               local buf = vim.api.nvim_win_get_buf(win)
               local filetype = vim.bo.filetype
@@ -280,6 +280,37 @@ M["nvim-notify"] = {
                   vim.notify(tostring(result), vim.log.levels.INFO, { title = "Result" })
                 else
                   vim.notify("Fail", vim.log.levels.ERROR, { title = "Result" })
+                end
+              end)
+            end
+          })
+        end
+      end,
+      "Evaluate code chunk(visual selection)"
+    },
+    ["<C-r>"] = {
+      function()
+        local code_lines = get_visual_selection_text()
+
+        if code_lines then
+          local code = table.concat(code_lines, '\n')
+
+          vim.notify(code, vim.log.levels.INFO, {
+            title = "Run code",
+            on_open = function (win)
+              local buf = vim.api.nvim_win_get_buf(win)
+              local filetype = vim.bo.filetype
+
+              vim.api.nvim_buf_set_option(buf, "filetype", filetype)
+
+              vim.schedule(function ()
+                local chunk = load('local runner = function()\n' .. code .. '\nend\nreturn runner()')
+                local success, result = pcall(chunk)
+
+                if success then
+                  vim.notify("Success", vim.log.levels.INFO)
+                else
+                  vim.notify("Fail", vim.log.levels.ERROR)
                 end
               end)
             end
