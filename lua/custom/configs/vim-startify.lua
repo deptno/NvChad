@@ -1,3 +1,5 @@
+local get_project_branch_name = require('custom/lib/get_project_branch_name')
+
 local PREVIOUS_SESSION_LINK_PATH = vim.fn.stdpath('data') .. '/previous_session'
 local get_privous_session = function ()
   local __LAST__ = '__LAST__'
@@ -130,6 +132,11 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
   group = vim.api.nvim_create_augroup("StartifyVimLeavePreAutoSaveSession", { clear = true }),
   callback = create_previous_session_link,
 })
+vim.api.nvim_create_user_command(
+  'GetProjectBranchName',
+  get_project_branch_name,
+  {}
+)
 vim.cmd [[
 function! GetUniqueSessionName()
   let path = fnamemodify(getcwd(), ':~:t')
