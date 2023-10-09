@@ -262,7 +262,7 @@ M["nvim-notify"] = {
 
           local code = table.concat(code_lines, '\n')
 
-          repl.run(code)
+          repl.evaluate(code)
         end
       end,
       "Evaluate code chunk(visual selection)"
@@ -274,7 +274,7 @@ M["nvim-notify"] = {
         if code_lines then
           local code = table.concat(code_lines, '\n')
 
-          repl.evaluate(code)
+          repl.run(code)
         end
       end,
       "Run code chunk(visual selection)"
