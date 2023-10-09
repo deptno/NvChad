@@ -84,6 +84,14 @@ M.general = {
       end,
       "Change working directory to parent directory"
     },
+    ["cd?"] = {
+      function()
+        vim.notify(vim.fn.fnamemodify(vim.fn.getcwd(), ':~'), vim.log.levels.INFO, {
+          title = "Crurrent working directory"
+        })
+      end,
+      "Show current working directory"
+    },
     ["<C-w>."] = {
       create_toggle_to_fit_width(),
       "Sync window width with buffer"
