@@ -85,11 +85,7 @@ M.general = {
       "Change working directory to parent directory"
     },
     ["cd?"] = {
-      function()
-        vim.notify(vim.fn.fnamemodify(vim.fn.getcwd(), ':~'), vim.log.levels.INFO, {
-          title = "Crurrent working directory"
-        })
-      end,
+      cd,
       "Show current working directory"
     },
     ["<C-w>."] = {

@@ -1,6 +1,6 @@
 local get_project_branch_name = require('custom/lib/get_project_branch_name')
+local constant = require('custom/lib/constant')
 
-local PREVIOUS_SESSION_LINK_PATH = vim.fn.stdpath('data') .. '/previous_session'
 local get_previous_session = function ()
   local __LAST__ = '__LAST__'
   local fn = vim.fn
@@ -17,7 +17,7 @@ local create_previous_session_link = function(previous_session)
   if previous_session then
     local source = '../' .. vim.fs.basename(previous_session)
 
-    vim.fn.system('ln -fs ' .. source .. ' ' .. PREVIOUS_SESSION_LINK_PATH)
+    vim.fn.system('ln -fs ' .. source .. ' ' .. constant.PREVIOUS_SESSION_LINK_PATH)
 
     return true
   end
@@ -25,7 +25,7 @@ local create_previous_session_link = function(previous_session)
   return false
 end
 local switch_previous_session = function ()
-  local current_session = vim.fn.resolve(PREVIOUS_SESSION_LINK_PATH)
+  local current_session = vim.fn.resolve(constant.PREVIOUS_SESSION_LINK_PATH)
 
   if vim.fn.filereadable(current_session) then
     vim.cmd('SLoad ' .. vim.fs.basename(current_session))
