@@ -78,7 +78,10 @@ vim.g.startify_update_oldfiles = 1
 vim.g.startify_session_persistence = 1
 vim.g.startify_session_autoload = 1
 vim.g.startify_enable_special = 0
--- vim.g.startify_session_before_save = { 'NvimTreeClose' }
+vim.g.startify_session_before_save = {
+  'lua require("nvim-tree.api").tree.close()',
+  'lua vim.g.close_symbols_outline()'
+}
 vim.g.startify_bookmarks = {
   { bz = '~/.zshrc' },
   { bg = '~/.gitconfig' },
@@ -101,6 +104,7 @@ vim.g.startify_custom_indices = {
   'ww',
 }
 vim.g.switch_previous_session = switch_previous_session
+vim.g.close_symbols_outline = close_symbols_outline
 vim.g.startify_commands = {
   { l = { "previous session", "= vim.g.switch_previous_session()" }, },
 }
