@@ -1,7 +1,7 @@
 local get_project_branch_name = require('custom/lib/get_project_branch_name')
 
 local PREVIOUS_SESSION_LINK_PATH = vim.fn.stdpath('data') .. '/previous_session'
-local get_privous_session = function ()
+local get_previous_session = function ()
   local __LAST__ = '__LAST__'
   local fn = vim.fn
   local last_session_path = fn.stdpath('data') .. '/session/' .. __LAST__
@@ -24,11 +24,20 @@ local create_previous_session_link = function(previous_session)
 
   return false
 end
-local switch_privous_session = function ()
+local switch_previous_session = function ()
   local current_session = vim.fn.resolve(PREVIOUS_SESSION_LINK_PATH)
 
   if vim.fn.filereadable(current_session) then
     vim.cmd('SLoad ' .. vim.fs.basename(current_session))
+  end
+end
+local close_symbols_outline = function ()
+  local success, so = pcall(require('symbols-outline'))
+
+  if success then
+    if so.view:is_open() then
+      so.close_outline()
+    end
   end
 end
 local map = function (fn, tlb)
@@ -91,9 +100,9 @@ vim.g.startify_custom_indices = {
   'wp',
   'ww',
 }
-vim.g.switch_privous_session = switch_privous_session
+vim.g.switch_previous_session = switch_previous_session
 vim.g.startify_commands = {
-  { l = { "previous session", "= vim.g.switch_privous_session()" }, },
+  { l = { "previous session", "= vim.g.switch_previous_session()" }, },
 }
 vim.g.startify_lists = {
     { type = 'commands', header = { '   Commands' } },
@@ -107,14 +116,14 @@ vim.g.startify_lists = {
 vim.api.nvim_create_autocmd("SessionLoadPost", {
   group = vim.api.nvim_create_augroup("StartifyAutoSaveSession", { clear = true }),
   callback = function()
-    local previous_session = get_privous_session()
+    local previous_session = get_previous_session()
 
     if previous_session then
       local is_created = create_previous_session_link(previous_session)
 
       if is_created then
         vim.schedule(function ()
-          local current_session = get_privous_session()
+          local current_session = get_previous_session()
 
           if previous_session ~= current_session then
             vim.notify(
