@@ -89,7 +89,7 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     init = function ()
-      require("symbols-outline").setup()
+      require("symbols-outline").setup(require('custom.configs.symbols-outline'))
     end
   },
   {
