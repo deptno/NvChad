@@ -1,16 +1,13 @@
 local notify_result = vim.schedule_wrap(function (code)
   local chunk = load(code)
   local success, result = pcall(chunk)
+  local level = success and vim.log.levels.INFO or vim.log.levels.ERROR
 
   if type(result) == 'table' then
-    result = tostring(vim.inspect(result))
+    result = vim.inspect(result)
   end
 
-  if success then
-    vim.notify(result, vim.log.levels.INFO)
-  else
-    vim.notify(result, vim.log.levels.ERROR)
-  end
+  vim.notify(tostring(result), level)
 end)
 
 local run_code = vim.schedule_wrap(
@@ -24,10 +21,10 @@ local run_code = vim.schedule_wrap(
         vim.api.nvim_buf_set_option(buf, "filetype", filetype)
 
         local sandbox = string.format([[
-local runner = function()
+do
   %s
 end
-return runner()]], code)
+]], code)
 
         notify_result(sandbox)
       end
