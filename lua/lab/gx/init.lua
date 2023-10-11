@@ -1,52 +1,39 @@
-local function handler()
-
-end
-local function find_normal_handler(mode, line)
-  if mode == 'n' then
-
-  end
-end
-
-local function search_for_url ()
-  local line = vim.api.nvim_get_current_line()
+local function gx()
   local mode = vim.api.nvim_get_mode().mode
+  local line = vim.api.nvim_get_current_line()
 
   if mode == 'n' then
-    local match = string.match(line, "B2C%-%d+") -- B2C-34000
-    if match then
-      print("match" .. match)
-      local Job = require("plenary.job")
-      local command = "open"
+    local handlers = require('lab/gx/handlers_n')
 
-      local result, return_val = Job:new({
-        command,
-        args = {
-          "https://zigbang.atlassian.net/browse/" .. match
-        },
-      }):sync()
+    for _, handler in ipairs(handlers) do
+      if handler(line) then
+        return
+      end
+    end
+  elseif mode == 'v' then
+    local handlers = require('lab/gx/handlers_v')
 
-      print(result, return_val)
-
+    for _, handler in ipairs(handlers) do
+      if handler(line) then
+        return
+      end
     end
   end
-  print("hello search_for_url", line, mode)
+
+  -- call default handler
+  vim.cmd("call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))")
 end
 
 local function init()
-  vim.g.netrw_nogx = 1 -- disable netrw gx
+  -- disable default handler
+  vim.g.netrw_nogx = 1
 
   local opts = { noremap = true, silent = true }
 
-  vim.keymap.set("n", "gx", search_for_url, opts)
-  vim.keymap.set("v", "gx", search_for_url, opts)
+  vim.keymap.set("n", "gx", gx, opts)
+  vim.keymap.set("v", "gx", gx, opts)
 end
 
-vim.api.nvim_create_user_command(
-  'Gx',
-  search_for_url,
-  {}
-)
+vim.api.nvim_create_user_command('Gx', gx, {})
 
 init()
-
-print("wip lab/gx")
