@@ -8,6 +8,8 @@ local handler = function(line, matched)
   end
   local file_path = vim.fn.expand('%:p'):gsub(git_root .. '/', '')
   local origin = vim.fn.system([[git remote -v | head -1 | awk '{print $2}']]):gsub('\n', '')
+
+
   local parts = {}
 
   for part in origin:gmatch("[^@:/]+") do
@@ -24,14 +26,14 @@ local handler = function(line, matched)
   Job:new({
     command,
     args = {
-      string.format("https://%s/%s/%s/blob/%s/%s", domain, username, repository, matched, file_path)
+      string.format("https://%s/%s/%s/commit/%s", domain, username, repository, matched)
     },
   }):sync()
 
   vim.notify(string.format("Open github commit: %s", matched), vim.log.levels.INFO)
 end
 local match = is_git_hash
-local name = 'github blob current file'
+local name = 'github commit'
 
 return {
   handler = handler,

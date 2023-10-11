@@ -1,21 +1,9 @@
--- 중복 정의 제거
-local map = function (fn, tlb)
-  assert(type(fn) == "function", "fn: function")
-  assert(type(tlb) == "table", "tlb: table(list)")
-
-  local ret = {}
-
-  for _, v in ipairs(tlb) do
-    table.insert(ret, fn(v))
-  end
-
-  return ret
-end
+local get_visual_selection_text = require("custom/lib/get_visual_selection_text")
 local function gx()
   local mode = vim.api.nvim_get_mode().mode
-  local line = vim.api.nvim_get_current_line()
 
   if mode == 'n' then
+    local line = vim.api.nvim_get_current_line()
     local handlers = require('lab/gx/handlers_n')
     local matched_handlers = {}
 
@@ -26,32 +14,47 @@ local function gx()
     end
 
     if #matched_handlers == 1 then
-      matched_handlers[#matched_handlers].handler(line)
+      local matched_handler = matched_handlers[#matched_handlers]
+
+      matched_handler.handler(line, matched_handler.match(line))
     elseif (#matched_handlers > 1) then
-
-      -- B2C-33333
-      return vim.ui.select(matched_handlers, {
-        prompt = "handlers:",
-        format_item = function(h)
-          return h.name
-        end
-      }, function(selected)
+      vim.ui.select(
+        matched_handlers,
+        {
+          prompt = "handlers:",
+          format_item = function(h)
+            return h.name
+          end
+        },
+        function(selected)
           selected.handler(line, selected.match(line))
-        end)
+        end
+      )
     end
-  elseif mode == 'v' then
+  elseif mode == 'v' or mode == 'V' then
     local handlers = require('lab/gx/handlers_v')
+    local lines = get_visual_selection_text()
+    local matched_handlers = {}
 
-    for _, handler in ipairs(handlers) do
-      if handler(line) then
-        return
+    for _, h in ipairs(handlers) do
+      if h.match(lines) then
+        table.insert(matched_handlers, h)
       end
     end
-  end
 
-  -- call default handler
-  vim.cmd("call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))")
+    if #matched_handlers == 1 then
+      local matched_handler = matched_handlers[#matched_handlers]
+
+      matched_handler.handler(lines, matched_handler.match(lines))
+    end
+  else
+    -- call default handler
+    vim.cmd("call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))")
+  end
 end
+-- tests
+-- B2C-33333
+-- 464814b135043ea99138f4d32c8f5df702f7a436
 
 local function init()
   -- disable default handler
