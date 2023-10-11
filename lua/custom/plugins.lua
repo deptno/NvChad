@@ -8,6 +8,9 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      'nvim-telescope/telescope-ui-select.nvim'
+    },
     opts = function()
       local chad = require("plugins.configs.telescope")
       local custom = require("custom.configs.telescope")
@@ -15,6 +18,9 @@ return {
 
       return merged
     end,
+    config = function()
+      require("telescope").load_extension("ui-select")
+    end
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -94,7 +100,15 @@ return {
   },
   {
     'stevearc/dressing.nvim',
-    opts = {},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      select = {
+        enabled = true,
+      }
+    },
   },
   {
     'rcarriga/nvim-notify',
