@@ -93,20 +93,6 @@ return {
     end
   },
   {
-    "chrishrb/gx.nvim",
-    event = { "BufEnter" },
-    dependencies = { "nvim-lua/plenary.nvim" },
-
-    -- you can specify also another config if you want
-    config = function()
-      require("gx").setup {
-        handler_options = {
-          search_engine = "https://papago.naver.com/?sk=en&tk=ko&hn=1&st=",
-        },
-      }
-    end,
-  },
-  {
     'stevearc/dressing.nvim',
     opts = {},
   },
