@@ -99,6 +99,7 @@ vim.g.startify_custom_indices = {
   'pd',
   'pt',
   'ph',
+  'ps',
   'pz',
   'wp',
   'ww',
