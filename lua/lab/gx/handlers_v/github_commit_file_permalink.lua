@@ -2,7 +2,8 @@ local get_git_root= require('lab/gx/lib/get_git_root')
 local get_visual_selection = require('custom.lib.get_visual_selection')
 local handler = function(lines, matched)
   local git_root = get_git_root()
-  local file_path = vim.fn.expand('%:p'):gsub(git_root .. '/', '')
+  local position = #(git_root) + 2 -- 마지막 / 를 위해 추가
+  local file_path = vim.fn.expand('%:p'):sub(position)
   local origin = vim.fn.system([[git remote -v | head -1 | awk '{print $2}']]):gsub('\n', '')
   local sha1 = vim.fn.system([[git rev-parse @]]):gsub('\n', '')
 
