@@ -31,15 +31,6 @@ local switch_previous_session = function ()
     vim.cmd('SLoad ' .. vim.fs.basename(current_session))
   end
 end
-local close_symbols_outline = function ()
-  local success, so = pcall(require('symbols-outline'))
-
-  if success then
-    if so.view:is_open() then
-      so.close_outline()
-    end
-  end
-end
 local map = function (fn, tlb)
   assert(type(fn) == "function", "fn: function")
   assert(type(tlb) == "table", "tlb: table(list)")
@@ -66,7 +57,42 @@ local get_git_files = function ()
 
   return ret
 end
+vim.g.startify_session_before_save_handler = function ()
+  local close_symbols_outline = function ()
+    local success, so = pcall(require('symbols-outline'))
 
+    if success then
+      if so.view:is_open() then
+        so.close_outline()
+        print("close outline")
+      end
+    end
+  end
+  ---neogit 관련 닫기를 처리한다
+  ---닫아도 안닫아도 버그가 있으나 닫는게 사용하기 좀 더 편함
+  ---안닫을시: 세션으로 복귀할때 해당 파일관련된 수저이 저장되지 않았다는 등의 메시지가 나옴, neogit 어느 순간 안됨
+  ---닫을시: 메시지 안뜨고 갑자기 neogit 안됨
+  local close_special_buffer = function ()
+    local handled = false
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+      local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+      local is_special = string.find(filetype, 'Neogit') == 1
+
+      if is_special then
+        vim.api.nvim_buf_delete(bufnr, { force = true })
+        handled = true
+      end
+    end
+    if handled then
+      -- 빈 버퍼가 보이는 것 방지
+      vim.cmd('bnext')
+    end
+  end
+
+  require("nvim-tree.api").tree.close()
+  close_symbols_outline()
+  close_special_buffer()
+end
 -- @legacy https://github.com/deptno/.config/blob/8bb421a122c30b172f3cd8ec9ac0f8894fe46bc5/.config/nvim/lua/user/startify.lua
 vim.g.startify_show_help = 1
 vim.g.startify_show_help_delay = 1
@@ -79,8 +105,7 @@ vim.g.startify_session_persistence = 1
 vim.g.startify_session_autoload = 1
 vim.g.startify_enable_special = 0
 vim.g.startify_session_before_save = {
-  'lua require("nvim-tree.api").tree.close()',
-  'lua vim.g.close_symbols_outline()'
+  'lua vim.g.startify_session_before_save_handler()',
 }
 vim.g.startify_bookmarks = {
   { bz = '~/.zshrc' },
@@ -105,7 +130,6 @@ vim.g.startify_custom_indices = {
   'ww',
 }
 vim.g.switch_previous_session = switch_previous_session
-vim.g.close_symbols_outline = close_symbols_outline
 vim.g.startify_commands = {
   { l = { "previous session", "= vim.g.switch_previous_session()" }, },
 }
