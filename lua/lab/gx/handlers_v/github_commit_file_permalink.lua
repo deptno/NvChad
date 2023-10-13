@@ -1,21 +1,20 @@
 local get_git_root= require('lab/gx/lib/get_git_root')
+local get_git_remote_info= require('lab/gx/lib/get_git_remote_info')
 local get_visual_selection = require('custom.lib.get_visual_selection')
 local handler = function(lines, matched)
   local git_root = get_git_root()
   local position = #(git_root) + 2 -- 마지막 / 를 위해 추가
   local file_path = vim.fn.expand('%:p'):sub(position)
-  local origin = vim.fn.system([[git remote -v | head -1 | awk '{print $2}']]):gsub('\n', '')
   local sha1 = vim.fn.system([[git rev-parse @]]):gsub('\n', '')
+  local remote_info = get_git_remote_info()
 
-  local parts = {}
-
-  for part in origin:gmatch("[^@:/]+") do
-    table.insert(parts, part)
+  if not remote_info then
+    return vim.notify('remote_info is null', vim.log.levels.TRACE)
   end
 
-  local domain = parts[2]
-  local username = parts[3]
-  local repository = vim.fn.fnamemodify(parts[4], ':r')
+  local domain = remote_info.domain
+  local username = remote_info.username
+  local repository = remote_info.repository
 
   local Job = require("plenary.job")
   local command = "open"
