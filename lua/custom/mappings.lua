@@ -94,11 +94,23 @@ M.general = {
     },
     ["<F11>"] = {
       function()
+        tmux.create_tmux_split_window_vertical({ wd = vim.fn.expand('%:p:h') })
+      end,
+      "Create tmux horizontal panel with current buffer path"
+    },
+    ["<F11><F11>"] = {
+      function()
         tmux.create_tmux_split_window_vertical()
       end,
       "Create tmux horizontal panel"
     },
     ["<F12>"] = {
+      function()
+        tmux.create_tmux_split_window_horizontal({ wd = vim.fn.expand('%:p:h') })
+      end,
+      "create tmux vertical panel with current buffer path"
+    },
+    ["<F12><F12>"] = {
       function()
         tmux.create_tmux_split_window_horizontal()
       end,
