@@ -7,6 +7,10 @@ return {
     end,
   },
   {
+    "lbrayner/vim-rzip",
+    lazy = false,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       'nvim-telescope/telescope-ui-select.nvim'
