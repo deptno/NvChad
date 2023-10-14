@@ -5,7 +5,7 @@ vim.g.vimwiki_global_ext = 0
 vim.g.vimwiki_list = {
   {
     name = "public",
-    path = "~/workspace/src/github.com/deptno/public_wiki",
+    path = "~/workspace/src/github.com/deptno/public-wiki",
     ext  = ".md",
     diary_rel_path = "diary",
     diary_index = "index",
