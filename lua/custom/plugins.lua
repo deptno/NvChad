@@ -27,6 +27,16 @@ return {
     end
   },
   {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local chad = require("plugins.configs.cmp")
+      local custom = require("custom.configs.cmp")
+      local merged = vim.tbl_deep_extend("force", chad, custom)
+
+      return merged
+    end,
+  },
+  {
     "lewis6991/gitsigns.nvim",
     opts = function()
       local opt = require("plugins.configs.others").gitsigns
