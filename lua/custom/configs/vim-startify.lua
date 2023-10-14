@@ -73,19 +73,13 @@ vim.g.startify_session_before_save_handler = function ()
   ---안닫을시: 세션으로 복귀할때 해당 파일관련된 수저이 저장되지 않았다는 등의 메시지가 나옴, neogit 어느 순간 안됨
   ---닫을시: 메시지 안뜨고 갑자기 neogit 안됨
   local close_special_buffer = function ()
-    local handled = false
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
       local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
       local is_special = string.find(filetype, 'Neogit') == 1
 
       if is_special then
         vim.api.nvim_buf_delete(bufnr, { force = true })
-        handled = true
       end
-    end
-    if handled then
-      -- 빈 버퍼가 보이는 것 방지
-      vim.cmd('bnext')
     end
   end
 
