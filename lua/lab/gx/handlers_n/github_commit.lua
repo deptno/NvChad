@@ -1,4 +1,6 @@
 local is_git_hash = require('lab/gx/lib/is_git_hash')
+local remove_suffix = require("lab/gx/lib/remove_suffix")
+
 local handler = function(line, matched)
   local git_root = vim.fn.system('git rev-parse --show-toplevel'):gsub('\n', '')
   local fail_prefix = 'fatal:'
@@ -16,7 +18,7 @@ local handler = function(line, matched)
 
   local domain = parts[2]
   local username = parts[3]
-  local repository = vim.fn.fnamemodify(parts[4], ':r')
+  local repository = remove_suffix('.git', parts[4])
 
   local Job = require("plenary.job")
   local command = "open"

@@ -1,9 +1,5 @@
-local remove_suffix = function (suffix, name)
-  if name:sub(-#suffix) == suffix then
-    return name:sub(1, -(#suffix + 1))
-  end
-  return name
-end
+local remove_suffix = require("lab/gx/lib/remove_suffix")
+
 local get_git_remote_info = function (cwd)
   local command = type(cwd) == 'string'
     and string.format("git -C %s remote -v | head -1 | awk '{print $2}'", cwd)
