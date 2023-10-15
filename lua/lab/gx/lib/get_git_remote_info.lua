@@ -1,5 +1,8 @@
-local get_git_remote_info = function ()
-  local origin = vim.fn.system([[git remote -v | head -1 | awk '{print $2}']]):gsub('\n', '')
+local get_git_remote_info = function (cwd)
+  local command = type(cwd) == 'string'
+    and string.format("git -C %s remote -v | head -1 | awk '{print $2}'", cwd)
+    or "git remote -v | head -1 | awk '{print $2}'"
+  local origin = vim.fn.system(command):gsub('\n', '')
   local fail_prefix = 'fatal:'
 
   if origin:sub(1, #fail_prefix) == fail_prefix then

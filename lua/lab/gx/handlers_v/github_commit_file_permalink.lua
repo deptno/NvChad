@@ -1,16 +1,19 @@
 local get_git_root= require('lab/gx/lib/get_git_root')
 local get_git_remote_info= require('lab/gx/lib/get_git_remote_info')
+local get_directory_of_current_file = require("lab/gx/lib/get_directory_of_current_file")
 local get_visual_selection = require('custom.lib.get_visual_selection')
 local handler = function(lines, matched)
-  local git_root = get_git_root()
-  local position = #(git_root) + 2 -- 마지막 / 를 위해 추가
-  local file_path = vim.fn.expand('%:p'):sub(position)
-  local sha1 = vim.fn.system([[git rev-parse @]]):gsub('\n', '')
-  local remote_info = get_git_remote_info()
+  local cwd = get_directory_of_current_file()
+  local git_root = get_git_root(cwd)
+  local remote_info = get_git_remote_info(cwd)
 
   if not remote_info then
     return vim.notify('remote_info is null', vim.log.levels.TRACE)
   end
+
+  local position = #(git_root) + 2 -- 마지막 / 를 위해 추가
+  local file_path = vim.fn.expand('%:p'):sub(position)
+  local sha1 = vim.fn.system(string.format('git -C %s rev-parse @', cwd)):gsub('\n', '')
 
   local domain = remote_info.domain
   local username = remote_info.username
