@@ -1,3 +1,9 @@
+local remove_suffix = function (suffix, name)
+  if name:sub(-#suffix) == suffix then
+    return name:sub(1, -(#suffix + 1))
+  end
+  return name
+end
 local get_git_remote_info = function (cwd)
   local command = type(cwd) == 'string'
     and string.format("git -C %s remote -v | head -1 | awk '{print $2}'", cwd)
@@ -17,8 +23,7 @@ local get_git_remote_info = function (cwd)
 
   local domain = parts[2]
   local username = parts[3]
-  local repository = vim.fn.fnamemodify(parts[4], ':r')
-
+  local repository = remove_suffix('.git', parts[4])
 
   return {
     domain = domain,
