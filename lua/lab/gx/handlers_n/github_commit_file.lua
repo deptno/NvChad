@@ -6,10 +6,7 @@ local handler = function(line, matched)
   if git_root:sub(1, #fail_prefix) == fail_prefix then
     vim.notify(git_root)
   end
-  local file_path = vim.fn.expand('%:p'):gsub(git_root .. '/', '')
   local origin = vim.fn.system([[git remote -v | head -1 | awk '{print $2}']]):gsub('\n', '')
-
-
   local parts = {}
 
   for part in origin:gmatch("[^@:/]+") do
