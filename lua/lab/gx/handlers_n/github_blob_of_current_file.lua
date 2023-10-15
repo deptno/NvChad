@@ -33,7 +33,7 @@ local handler = function(line, matched)
   vim.notify(string.format("Open github commit: %s", matched), vim.log.levels.INFO)
 end
 local match = is_git_hash
-local name = 'github blob current file'
+local name = 'github blob, ❗current file'
 
 return {
   handler = handler,
