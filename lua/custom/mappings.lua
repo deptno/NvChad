@@ -92,6 +92,18 @@ M.general = {
       create_toggle_to_fit_width(),
       "Sync window width with buffer"
     },
+    ["<F10>"] = {
+      function()
+        tmux.create_tmux_new_window({ wd = vim.fn.expand('%:p:h') })
+      end,
+      "Create tmux new window with current buffer path"
+    },
+    ["<F10><F10>"] = {
+      function()
+        tmux.create_tmux_new_window()
+      end,
+      "Create tmux new window"
+    },
     ["<F11>"] = {
       function()
         tmux.create_tmux_split_window_vertical({ wd = vim.fn.expand('%:p:h') })
