@@ -1,5 +1,5 @@
-local get_git_root= require('lab/gx/lib/get_git_root')
-local get_git_remote_info= require('lab/gx/lib/get_git_remote_info')
+local get_git_root = require('lab/gx/lib/get_git_root')
+local get_git_remote_info = require('lab/gx/lib/get_git_remote_info')
 local get_directory_of_current_file = require("lab/gx/lib/get_directory_of_current_file")
 local get_visual_selection = require('custom.lib.get_visual_selection')
 local handler = function(lines, matched)
