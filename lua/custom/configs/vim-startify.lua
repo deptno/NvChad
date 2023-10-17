@@ -81,7 +81,8 @@ vim.g.change_to_vcs_root = 1
 vim.g.startify_custom_header = {}
 vim.g.startify_update_oldfiles = 1
 vim.g.startify_session_persistence = 1
-vim.g.startify_session_autoload = 1
+vim.g.startify_session_autoload = 0
+vim.g.startify_skiplist = { '.*OUTLINE$' }
 vim.g.startify_enable_special = 0
 vim.g.startify_session_before_save = {
   'lua vim.g.startify_session_before_save_handler()',
