@@ -1,4 +1,4 @@
-local constant = require('custom/lib/constant')
+local get_current_session_name = require('custom/lib/get_current_session_name')
 local get_git_root = require('lab/gx/lib/get_git_root')
 local get_git_branch_info = require('lab/gx/lib/get_git_branch_info')
 local get_git_remote_info = require('lab/gx/lib/get_git_remote_info')
@@ -26,7 +26,7 @@ cwd: %s
   )
 end
 local function cd(path)
-  local current_session = vim.fs.basename(vim.fn.resolve(constant.PREVIOUS_SESSION_LINK_PATH))
+  local current_session = vim.fs.basename(get_current_session_name())
 
   if path then
     vim.api.nvim_set_current_dir(path)
