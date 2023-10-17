@@ -1,4 +1,4 @@
 return {
-  theme_toggle = { "onenord_light", "everforest" },
-  theme = "everforest",
+  theme_toggle = { "everforest_light", "rosepine" },
+  theme = "rosepine",
 }
