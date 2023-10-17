@@ -29,7 +29,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "petertriho/cmp-git"
+      "petertriho/cmp-git",
+      "hrsh7th/cmp-emoji",
     },
     opts = function()
       local chad = require("plugins.configs.cmp")

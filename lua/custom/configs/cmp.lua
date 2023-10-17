@@ -6,5 +6,6 @@ return {
     { name = "nvim_lua" },
     { name = "path" },
     { name = "git" },
+    { name = "emoji" },
   }
 }
