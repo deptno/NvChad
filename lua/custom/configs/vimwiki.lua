@@ -9,6 +9,7 @@ vim.g.vimwiki_list = {
     ext  = ".md",
     diary_rel_path = "diary",
     diary_index = "index",
+    auto_diary_index = 1
   },
   {
     name = "private",
@@ -16,5 +17,6 @@ vim.g.vimwiki_list = {
     ext  = ".md",
     diary_rel_path = "diary",
     diary_index = "index",
+    auto_diary_index = 1
   },
 }
