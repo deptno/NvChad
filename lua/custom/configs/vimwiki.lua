@@ -2,6 +2,7 @@
 vim.g.vimwiki_auto_chdir = 1
 vim.g.vimwiki_conceallevel = 0
 vim.g.vimwiki_global_ext = 0
+vim.g.vimwiki_start_week_day = 'sunday'
 vim.g.vimwiki_list = {
   {
     name = "public",
