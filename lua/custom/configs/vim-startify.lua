@@ -96,8 +96,7 @@ vim.g.startify_custom_indices = {
   'ph',
   'ps',
   'pz',
-  'wp',
-  'ww',
+  'w',
 }
 vim.g.switch_previous_session = switch_previous_session
 vim.g.startify_commands = {
