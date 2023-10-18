@@ -1,4 +1,5 @@
 local map = require("custom/lib/map")
+local trim= require("custom/lib/trim")
 local handler = function(lines, matched)
   local Job = require("plenary.job")
   local command = "open"
@@ -12,12 +13,6 @@ local handler = function(lines, matched)
   }):sync()
 
   vim.notify(string.format("Open papago: %s", matched), vim.log.levels.INFO)
-end
----trim string
----@param text string
----@return string
-local trim = function(text)
-  return text:match([[^%s*(.-)%s*$]])
 end
 local match = function (lines)
   for _, line in ipairs(lines) do
