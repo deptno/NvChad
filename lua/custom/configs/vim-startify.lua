@@ -1,5 +1,6 @@
 local get_project_branch_name = require('custom/lib/get_project_branch_name')
 local constant = require('custom/lib/constant')
+local map      = require('custom/lib/map')
 
 local get_last_session = function ()
   local __LAST__ = '__LAST__'
@@ -31,18 +32,7 @@ local switch_previous_session = function ()
     vim.cmd('SLoad ' .. vim.fs.basename(previous_session))
   end
 end
-local map = function (fn, tlb)
-  assert(type(fn) == "function", "fn: function")
-  assert(type(tlb) == "table", "tlb: table(list)")
 
-  local ret = {}
-
-  for _, v in ipairs(tlb) do
-    table.insert(ret, fn(v))
-  end
-
-  return ret
-end
 local get_git_files = function ()
   local untracked = function (v) return { line = '❗' .. v, path = v, } end
   local git_files = function (v) return { line = v, path = v, } end
