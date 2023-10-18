@@ -1,4 +1,8 @@
 local get_visual_selection = require "custom/lib/get_visual_selection"
+
+---선택된 영역의 text list 를 반환
+---v|V 모드는 nil 을 리턴
+---@return table|nil
 local get_visual_selection_text = function ()
   local selection = get_visual_selection()
 
