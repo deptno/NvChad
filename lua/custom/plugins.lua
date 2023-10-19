@@ -7,6 +7,16 @@ return {
     end,
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = function()
+      local chad = require("plugins.configs.others").blankline      local custom = require("custom.configs.indent-blankline")
+      local custom = require("custom.configs.indent-blankline")
+      local merged = vim.tbl_deep_extend("force", chad, custom)
+
+      return merged
+    end,
+  },
+  {
     "lbrayner/vim-rzip",
     lazy = false,
   },
