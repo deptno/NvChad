@@ -1,4 +1,4 @@
 return {
   theme_toggle = { "onenord_light", "rosepine" },
-  theme = "rosepine",
+  theme = "kanagawa",
 }
