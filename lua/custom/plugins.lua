@@ -41,9 +41,11 @@ return {
 
       return merged
     end,
-    init = function()
+    config = function(_, opts)
+      require("cmp").setup(opts)
       require("cmp_git").setup(require("custom.configs.cmp_git"))
-    end
+    end,
+    event = 'VeryLazy',
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -53,13 +55,14 @@ return {
 
       return opt
     end,
+    event = 'VeryLazy',
   },
   {
     "vimwiki/vimwiki",
-    lazy = false,
-    init = function()
+    config = function()
       require("custom.configs.vimwiki")
     end,
+    ft = { "markdown" },
   },
   {
     "mhinz/vim-startify",
@@ -71,10 +74,10 @@ return {
   {
     "kylechui/nvim-surround",
     version = "*",
-    event = "VeryLazy",
     config = function ()
       require("nvim-surround").setup({})
-    end
+    end,
+    event = "VeryLazy",
   },
   {
     "someone-stole-my-name/yaml-companion.nvim",
@@ -86,23 +89,24 @@ return {
     config = function()
       require("telescope").load_extension("yaml_schema")
     end,
+    event = 'VeryLazy',
   },
   {
     "sindrets/diffview.nvim",
-    init = function ()
-      local config = require("custom.configs.diffview")
-      require("diffview").setup(config)
-    end
+    config = function (_, opts)
+      require("diffview").setup(require("custom.configs.diffview"), opts)
+    end,
+    event = 'VeryLazy',
   },
   {
     "rest-nvim/rest.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    init = function ()
-      local config = require("custom.configs.rest")
-      require("rest-nvim").setup(config)
-    end
+    config = function (_, opts)
+      require("rest-nvim").setup(require("custom.configs.rest"), opts)
+    end,
+    ft = { 'http' }
   },
   {
     "NeogitOrg/neogit",
@@ -111,14 +115,16 @@ return {
       "nvim-telescope/telescope.nvim",
       "sindrets/diffview.nvim",
     },
-    init = function ()
-      require('neogit').setup()
+    config = function (_, opts)
+      require('neogit').setup({}, opts)
     end,
+    event = 'VeryLazy',
   },
   {
     "simrat39/symbols-outline.nvim",
-    init = function ()
-      require("symbols-outline").setup(require('custom.configs.symbols-outline'))
+    opts = require('custom.configs.symbols-outline'),
+    config = function (_, opts)
+      require("symbols-outline").setup(opts)
     end
   },
   {
@@ -148,7 +154,7 @@ return {
   },
   {
     'chentoast/marks.nvim',
+    opts = require('custom/configs/marks'),
     event = 'VeryLazy',
-    opts = require('custom/configs/marks')
   }
 }
