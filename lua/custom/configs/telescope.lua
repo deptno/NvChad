@@ -27,4 +27,10 @@ return {
     find_files = { theme = 'ivy' },
     live_grep = {},
   },
+  extensions = {
+    ["ui-select"] = {
+      -- @see https://github.com/nvim-telescope/telescope-ui-select.nvim#telescope-setup-and-configuration
+      require("telescope.themes").get_cursor({})
+    }
+  }
 }
