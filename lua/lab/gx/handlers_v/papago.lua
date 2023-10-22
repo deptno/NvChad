@@ -1,6 +1,9 @@
 local map = require("custom/lib/map")
 local trim= require("custom/lib/trim")
-local handler = function(lines, matched)
+local M = {}
+
+M.handler = function(args)
+  local matched = M.match(args.lines)
   local Job = require("plenary.job")
   local command = "open"
   local url = string.format('https://papago.naver.com/?sk=en&tk=ko&hn=1&st=%s', matched)
@@ -14,7 +17,7 @@ local handler = function(lines, matched)
 
   vim.notify(string.format("Open papago: %s", matched), vim.log.levels.INFO)
 end
-local match = function (lines)
+M.match = function (lines)
   for _, line in ipairs(lines) do
     if line:gmatch('%w+') then
       return trim(table.concat(map(trim, lines), ' '))
@@ -23,10 +26,6 @@ local match = function (lines)
 
   return nil
 end
-local name = 'translator:papago'
+M.name = 'translator:papago'
 
-return {
-  handler = handler,
-  match = match,
-  name = name,
-}
+return M

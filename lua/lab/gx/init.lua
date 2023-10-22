@@ -1,3 +1,4 @@
+local get_visual_selection = require "custom/lib/get_visual_selection"
 local get_visual_selection_text = require("custom/lib/get_visual_selection_text")
 local handle_n = function ()
   local line = vim.api.nvim_get_current_line()
@@ -31,6 +32,7 @@ local handle_n = function ()
 end
 local handle_vV = function ()
   local handlers = require('lab/gx/handlers_v')
+  local range = get_visual_selection()
   local lines = get_visual_selection_text()
   local matched_handlers = {}
 
@@ -54,7 +56,7 @@ local handle_vV = function ()
         end
       },
       function(selected)
-        selected.handler(lines, selected.match(lines))
+        selected.handler({ range = range, lines = lines })
       end
     )
   end

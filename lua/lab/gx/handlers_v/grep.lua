@@ -1,12 +1,15 @@
 local trim = require("custom/lib/trim")
-local handler = function(lines, matched)
+local M = {}
+
+M.handler = function(args)
+  local matched = M.match(args.lines)
   if not pcall(require, 'telescope') then
     return vim.notify('fail to require "telescope"')
   end
 
   vim.cmd(':Telescope live_grep default_text=' .. matched)
 end
-local match = function (lines)
+M.match = function (lines)
   if #lines == 1 then
     local line = lines[1]
 
@@ -17,10 +20,6 @@ local match = function (lines)
 
   return nil
 end
-local name = 'grep text'
+M.name = 'grep text'
 
-return {
-  handler = handler,
-  match = match,
-  name = name,
-}
+return M

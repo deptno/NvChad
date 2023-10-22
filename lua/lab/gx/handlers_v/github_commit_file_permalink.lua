@@ -1,8 +1,10 @@
 local get_git_root = require('lab/gx/lib/get_git_root')
 local get_git_remote_info = require('lab/gx/lib/get_git_remote_info')
 local get_directory_of_current_file = require("lab/gx/lib/get_directory_of_current_file")
-local get_visual_selection = require('custom.lib.get_visual_selection')
-local handler = function(lines, matched)
+local M = {}
+
+M.handler = function(args)
+  local range = args.range
   local cwd = get_directory_of_current_file()
   local git_root = get_git_root(cwd)
   local remote_info = get_git_remote_info(cwd)
@@ -21,7 +23,6 @@ local handler = function(lines, matched)
 
   local Job = require("plenary.job")
   local command = "open"
-  local range = get_visual_selection()
   local url
 
   if range and range[1] then
@@ -43,14 +44,9 @@ local handler = function(lines, matched)
 
   vim.notify(string.format("Open github permalink: %s", sha1), vim.log.levels.INFO)
 end
-local match = function(lines)
-  vim.notify(tostring(get_git_root()))
+M.match = function(lines)
   return get_git_root()
 end
-local name = 'github commit file permalink'
+M.name = 'github commit file permalink'
 
-return {
-  handler = handler,
-  match = match,
-  name = name,
-}
+return M
