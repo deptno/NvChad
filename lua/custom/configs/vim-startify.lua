@@ -35,6 +35,7 @@ vim.g.startify_bookmarks = {
 }
 vim.g.startify_commands = {
   -- { l = { "previous session", "= vim.g.switch_previous_session()" }, },
+  { s = { "sessions", ":Telescope persisted" }, },
 }
 vim.g.startify_lists = {
     { type = 'commands', header = { '   Commands' } },

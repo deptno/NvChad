@@ -36,6 +36,7 @@ return {
       require("telescope").setup(opts)
       require("telescope").load_extension("ui-select")
       require("telescope").load_extension("fzf")
+      require("telescope").load_extension("persisted")
     end
   },
   {
@@ -209,6 +210,13 @@ return {
   },
   {
     'backdround/tabscope.nvim',
+    config = true,
+  },
+  {
+    'olimorris/persisted.nvim',
+    opts = {
+      autoload = true,
+    },
     config = true,
   }
 }
