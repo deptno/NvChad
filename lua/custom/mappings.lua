@@ -22,7 +22,6 @@ M.disabled = {
     ["<S-tab>"] = "",
   }
 }
-
 -- Your custom mappings
 M.general = {
   n = {
@@ -345,6 +344,16 @@ M["nvim-ufo"] = {
       "Close folds with: ufo",
     },
   },
+}
+M.persisted = {
+  n = {
+    ["<F2>"] = {
+      function ()
+        return vim.cmd(":Telescope persisted")
+      end,
+      "Select session :persisted"
+    },
+  }
 }
 
 return M
