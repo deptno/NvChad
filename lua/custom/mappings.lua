@@ -309,4 +309,33 @@ M["nvim-notify"] = {
     }
   }
 }
+M["nvim-ufo"] = {
+  n = {
+    ["zR"] = {
+      function ()
+        return require('ufo').openAllFolds()
+      end,
+      "Open all folds: ufo",
+    },
+    ["zM"] = {
+      function ()
+        return require('ufo').closeAllFolds()
+      end,
+      "Close all folds: ufo",
+    },
+    ["zr"] = {
+      function ()
+        return require('ufo').openFoldsExceptKinds()
+      end,
+      "Open folds except kinds: ufo",
+    },
+    ["zm"] = {
+      function ()
+        require('ufo').closeFoldsWith()
+      end,
+      "Close folds with: ufo",
+    },
+  },
+}
+
 return M

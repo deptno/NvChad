@@ -1,8 +1,16 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
-local configs = require("plugins.configs.lspconfig")
+local configs = require("plugins.configs.lspconfig").capabilities
 local on_attach = configs.on_attach
-local capabilities = configs.capabilities
+
+--- nvim-ufo
+local capabilities = configs.capabilities or {}
+local textDocument = capabilities.textDocument or {}
+textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+configs.capabilities = capabilities
 
 local lspconfig = require("lspconfig")
 local servers = {
