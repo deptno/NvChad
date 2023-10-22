@@ -144,6 +144,12 @@ M.telescope = {
   n = {
     -- find
     ["<leader>gr"] = { "<cmd>Telescope lsp_references<CR>", "LSP lsp_references" },
+    ["<leader>ds"] = {
+      function ()
+        require('telescope.builtin').lsp_dynamic_workspace_symbols()
+      end,
+      "LSP lsp_dynamic_workspace_symbols"
+    },
   }
 }
 M.nvimtree = {
