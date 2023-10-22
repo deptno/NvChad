@@ -31,6 +31,13 @@ return {
     ["ui-select"] = {
       -- @see https://github.com/nvim-telescope/telescope-ui-select.nvim#telescope-setup-and-configuration
       require("telescope.themes").get_cursor({})
+    },
+    persisted = {
+      layout_strategy = 'center',
+      layout_config = {
+        height = 20,
+        width = 100,
+      }
     }
   }
 }
