@@ -252,7 +252,7 @@ M.tabufline = {
     },
     ["-b"] = {
       function()
-        require("nvchad.tabufline").close_buffer()
+        require("tabscope").remove_tab_buffer()
       end,
       "Close buffer",
     },

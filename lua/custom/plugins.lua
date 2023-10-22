@@ -207,4 +207,8 @@ return {
     end,
     event = 'VeryLazy'
   },
+  {
+    'backdround/tabscope.nvim',
+    config = true,
+  }
 }
