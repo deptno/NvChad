@@ -138,6 +138,15 @@ M.general = {
     },
   }
 }
+
+M.telescope = {
+  plugin = true,
+
+  n = {
+    -- find
+    ["<leader>gr"] = { "<cmd>Telescope lsp_references<CR>", "LSP lsp_references" },
+  }
+}
 M.nvimtree = {
   n = {
     ["sf"] = {
