@@ -16,6 +16,7 @@ local lspconfig = require("lspconfig")
 local servers = {
   "rust_analyzer",
   "tsserver",
+  "html",
 }
 
 for _, lsp in ipairs(servers) do
