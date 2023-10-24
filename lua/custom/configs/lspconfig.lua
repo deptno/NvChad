@@ -17,6 +17,8 @@ local servers = {
   "rust_analyzer",
   "tsserver",
   "html",
+  "emmet_language_server",
+  "tailwindcss",
 }
 
 for _, lsp in ipairs(servers) do
