@@ -25,6 +25,7 @@ return {
   },
   pickers = {
     find_files = { theme = 'ivy' },
+    oldfiles = { cwd_only = true },
     live_grep = {},
   },
   extensions = {
