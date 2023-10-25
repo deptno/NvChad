@@ -355,9 +355,15 @@ M.persisted = {
   n = {
     ["<F2>"] = {
       function ()
-        return vim.cmd(":Telescope persisted")
+        if not package.loaded['persisted'] then
+          return vim.notify('plugin:persisted is not loaded', vim.log.levels.WARN)
+        end
+
+        return vim.cmd([[
+        :SessionSave
+        :Telescope persisted]])
       end,
-      "Select session :persisted"
+      "SessionSave + Select session :persisted"
     },
   }
 }
