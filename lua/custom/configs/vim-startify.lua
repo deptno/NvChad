@@ -33,13 +33,9 @@ vim.g.startify_bookmarks = {
   { bt = '~/.tmux.conf' },
   '~/.taskrc',
 }
-vim.g.startify_commands = {
-  -- { l = { "previous session", "= vim.g.switch_previous_session()" }, },
-}
 vim.g.startify_lists = {
-    { type = 'commands', header = { '   Commands' } },
+    { type = 'dir', header = { '   📂 Current directory ' .. vim.fn.getcwd() } },
     { type = get_git_files, header = { '   💻 Git files' } },
     { type = 'files', header = { '   🕘 Recent ' } },
-    { type = 'dir', header = { '   📂 Current directory ' .. vim.fn.getcwd() } },
     { type = 'bookmarks', header = { '   Bookmarks' } },
 }
