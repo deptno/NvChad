@@ -213,6 +213,8 @@ return {
     'olimorris/persisted.nvim',
     opts = {
       autoload = true,
+      follow_cwd = false,
+      use_git_branche = true,
     },
     config = true,
   },
