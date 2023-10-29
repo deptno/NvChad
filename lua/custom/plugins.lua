@@ -215,5 +215,9 @@ return {
       autoload = true,
     },
     config = true,
-  }
+  },
+  {
+    'gioele/vim-autoswap',
+    lazy = false,
+  },
 }
