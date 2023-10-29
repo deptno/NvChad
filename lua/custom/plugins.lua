@@ -110,16 +110,6 @@ return {
     event = 'VeryLazy',
   },
   {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function (_, opts)
-      require("rest-nvim").setup(require("custom.configs.rest"), opts)
-    end,
-    ft = { 'http' }
-  },
-  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
