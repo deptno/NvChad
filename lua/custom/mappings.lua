@@ -127,6 +127,21 @@ M.general = {
       end,
       "create tmux vertical panel"
     },
+    ["lz"] = {
+      function()
+        local server = vim.api.nvim_get_vvar('servername')
+        local command = string.format([[
+tmux display-popup \
+-e NVIM=%s \
+-d "#{pane_current_path}" \
+-w 94%% \
+-h 100%% \
+-x 100%% \
+-EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml"]], server)
+        vim.fn.system(command)
+      end,
+      "Open lazygit"
+    },
   },
   v = {
     ["H"] = {
