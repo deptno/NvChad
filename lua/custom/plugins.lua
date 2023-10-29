@@ -110,6 +110,13 @@ return {
     event = 'VeryLazy',
   },
   {
+    "diepm/vim-rest-console",
+    config = function ()
+      vim.g.vrc_curl_opts = { ["-s"] = "" }
+    end,
+    ft = { "rest" },
+  },
+  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
