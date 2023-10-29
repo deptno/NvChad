@@ -117,18 +117,6 @@ return {
     ft = { "rest" },
   },
   {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "sindrets/diffview.nvim",
-    },
-    config = function (_, opts)
-      require('neogit').setup({}, opts)
-    end,
-    event = 'VeryLazy',
-  },
-  {
     "simrat39/symbols-outline.nvim",
     opts = require('custom.configs.symbols-outline'),
     config = function (_, opts)
