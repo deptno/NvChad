@@ -1,5 +1,5 @@
-vim.api.nvim_create_autocmd( "BufEnter", {
-  group = vim.api.nvim_create_augroup("HelpFiletype", { clear = true }),
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("HelpFiletype", {}),
   callback = function(ev)
     local opts = {}
 

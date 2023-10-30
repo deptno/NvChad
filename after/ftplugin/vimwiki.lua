@@ -7,9 +7,9 @@ local convert_to_markdown = vim.schedule_wrap(
   end
 )
 
-vim.api.nvim_create_autocmd( "BufEnter", {
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
   pattern = "*.md",
-  group = vim.api.nvim_create_augroup("VimwikiFiletype", { clear = true }),
+  group = vim.api.nvim_create_augroup("VimwikiFiletype", {}),
   callback = function(ev)
     local opts = {}
 

@@ -1,5 +1,5 @@
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  group = vim.api.nvim_create_augroup("QfFiletype", { clear = true }),
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("QfFiletype", {}),
   callback = function(ev)
     local opts = {}
 
