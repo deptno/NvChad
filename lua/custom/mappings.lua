@@ -4,6 +4,7 @@ local create_toggle_to_fit_width = require('custom/lib/create_toggle_to_fit_widt
 local get_visual_selection_text = require('custom/lib/get_visual_selection_text')
 local tmux = require('custom/lib/create_tmux_split_window')
 local repl = require('custom/lib/repl')
+local get_git_root = require('lab.gx.lib.get_git_root')
 
 -- In order to disable a default keymap, use
 M.disabled = {
@@ -130,6 +131,10 @@ M.general = {
     ["lz"] = {
       function()
         local server = vim.api.nvim_get_vvar('servername')
+        -- FIXME: get_git_root custom/lib 으로 이동
+        local git_root = get_git_root(vim.fn.expand('%:p:h'))
+        local work_tree_option = git_root and '-w ' .. git_root or ''
+        vim.notify(work_tree_option)
         local command = string.format([[
 tmux display-popup \
 -e NVIM=%s \
@@ -137,7 +142,7 @@ tmux display-popup \
 -w 94%% \
 -h 100%% \
 -x 100%% \
--EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml"]], server)
+-EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml %s"]], server, work_tree_option)
         vim.fn.system(command)
       end,
       "Open lazygit"
