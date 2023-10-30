@@ -1,6 +1,6 @@
 return {
-  theme_toggle = { "onenord_light", "kanagawa" },
-  theme = "kanagawa",
+  theme_toggle = { "github_light", "chocolate" },
+  theme = "chocolate",
   statusline = {
     theme = "vscode_colored",
     separator_style = "default",
@@ -13,5 +13,4 @@ return {
       table.insert(modules, 3, ' 📂' .. name .. ' ')
     end
   },
-
 }
