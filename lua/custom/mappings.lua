@@ -160,8 +160,6 @@ M.telescope = {
   plugin = true,
 
   n = {
-    -- find
-    ["<leader>gr"] = { "<cmd>Telescope lsp_references<CR>", "LSP lsp_references" },
     ["<leader>ds"] = {
       function ()
         require('telescope.builtin').lsp_dynamic_workspace_symbols()
@@ -383,6 +381,33 @@ M.persisted = {
       end,
       "SessionSave + Select session :persisted"
     },
+  }
+}
+local createFxSaga = function (cmd)
+  return {
+    function()
+      if not package.loaded['lspsaga'] then
+        return vim.notify('plugin:lspsaga is not loaded', vim.log.levels.WARN)
+      end
+
+      return vim.cmd(cmd)
+    end,
+    cmd,
+  }
+end
+M.lspsaga = {
+  n = {
+    ["<leader>db"] = createFxSaga('Lspsaga show_buf_diagnostics ++normal'),
+    ["<leader>dw"] = createFxSaga('Lspsaga show_workspace_diagnostics ++normal'),
+    ["[e"] = createFxSaga('Lspsaga diagnostic_jump_prev'),
+    ["]e"] = createFxSaga('Lspsaga diagnostic_jump_next'),
+    ["<leader>rA"] = createFxSaga('Lspsaga rename ++project'),
+    ["gi"] = createFxSaga('Lspsaga incoming_calls'),
+    ["gD"] = createFxSaga('Lspsaga peek_definition'),
+    ["gd"] = createFxSaga('Lspsaga goto_definition'),
+    ["gr"] = createFxSaga('Lspsaga finder def+ref+imp+tyd'),
+    ["<leader>2"] = createFxSaga('Lspsaga outline'),
+    ["K"] = createFxSaga('Lspsaga hover_doc'),
   }
 }
 

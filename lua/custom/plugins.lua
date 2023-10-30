@@ -210,4 +210,39 @@ return {
     'gioele/vim-autoswap',
     lazy = false,
   },
+  {
+    'nvimdev/lspsaga.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require('lspsaga').setup({
+        finder = {
+          max_height = 0.8,
+          left_width = 0.3,
+          right_width = 0.5,
+          methods = {
+            tyd = 'textDocument/typeDefinition',
+          },
+        },
+        hover = {
+          max_width = 0.9,
+          max_height = 0.8,
+          open_cmd = '!min',
+        },
+        symbol_in_winbar = {
+          folder_level = 4,
+        },
+        code_action = {
+          show_server_name = true,
+          extend_gitsigns = true,
+        },
+        outline = {
+          detail = false,
+        },
+      })
+    end,
+    event = 'LspAttach',
+  }
 }
