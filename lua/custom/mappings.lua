@@ -130,19 +130,17 @@ M.general = {
     },
     ["lz"] = {
       function()
-        local server = vim.api.nvim_get_vvar('servername')
         -- FIXME: get_git_root custom/lib 으로 이동
         local git_root = get_git_root(vim.fn.expand('%:p:h'))
         local work_tree_option = git_root and '-w ' .. git_root or ''
         vim.notify(work_tree_option)
         local command = string.format([[
 tmux display-popup \
--e NVIM=%s \
 -d "#{pane_current_path}" \
 -w 94%% \
 -h 100%% \
 -x 100%% \
--EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml %s"]], server, work_tree_option)
+-EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml %s"]], work_tree_option)
         vim.fn.system(command)
       end,
       "Open lazygit"
