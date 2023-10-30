@@ -9,7 +9,7 @@ local run_fx = function ()
   local command = string.format([[
 tmux display-popup \
 -d "#{pane_current_path}" \
--w 94%% \
+-w 70%% \
 -h 100%% \
 -x 100%% \
 -e FX_THEME=6 \
