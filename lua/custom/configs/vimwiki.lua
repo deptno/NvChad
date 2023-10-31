@@ -21,3 +21,4 @@ vim.g.vimwiki_list = {
     auto_diary_index = 1
   },
 }
+vim.treesitter.language.register('markdown', 'vimwiki')
