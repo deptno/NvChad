@@ -1,4 +1,4 @@
--- https://github.com/deptno/.config/blob/master/.config/nvim/lua/user/vimwiki.lua
+-- https://github.com/deptno/.config/blob/0b2f235e2a3452fb6043f4e607a6bf1968804030/.config/nvim/lua/user/vimwiki.lua
 vim.g.vimwiki_auto_chdir = 1
 vim.g.vimwiki_conceallevel = 0
 vim.g.vimwiki_global_ext = 0
