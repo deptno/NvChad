@@ -229,7 +229,6 @@ return {
         },
         code_action = {
           show_server_name = true,
-          extend_gitsigns = true,
         },
         outline = {
           detail = false,
