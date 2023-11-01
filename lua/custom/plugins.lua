@@ -244,5 +244,16 @@ return {
       })
     end,
     event = 'LspAttach',
+  },
+  {
+    'f-person/git-blame.nvim',
+    event = 'VeryLazy'
+  },
+  {
+    'FabijanZulj/blame.nvim',
+    opts = {
+      virtual_style = 'float'
+    },
+    event = 'VeryLazy'
   }
 }
