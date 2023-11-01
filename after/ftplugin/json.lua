@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
   group = vim.api.nvim_create_augroup("JsonFiletype", {}),
   callback = function(ev)
     local opts = {
-      buffer = ev.buf
+      buffer = true
     }
 
     vim.keymap.set('n', '.', run_fx, opts)
