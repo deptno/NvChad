@@ -1,4 +1,4 @@
-local remove_suffix = require("lab/gx/lib/remove_suffix")
+local parse_repository = require("lab.gx.lib.parse_repository")
 
 local get_git_remote_info = function (cwd)
   local command = type(cwd) == 'string'
@@ -11,21 +11,7 @@ local get_git_remote_info = function (cwd)
     return nil, origin
   end
 
-  local parts = {}
-
-  for part in origin:gmatch("[^@:/]+") do
-    table.insert(parts, part)
-  end
-
-  local domain = parts[2]
-  local username = parts[3]
-  local repository = remove_suffix('.git', parts[4])
-
-  return {
-    domain = domain,
-    username = username,
-    repository = repository,
-  }
+  return parse_repository(origin)
 end
 
 return get_git_remote_info
