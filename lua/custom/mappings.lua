@@ -412,5 +412,18 @@ M.lspsaga = {
     ["K"] = createFxSaga('Lspsaga hover_doc'),
   }
 }
+M.blame = {
+  n = {
+    [",b"] = {
+      function ()
+      if not package.loaded['blame'] then
+        return vim.notify('plugin:blame is not loaded', vim.log.levels.WARN)
+      end
+
+      vim.cmd('ToggleBlame virtual')
+      end
+    }
+  }
+}
 
 return M
