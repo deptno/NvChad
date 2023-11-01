@@ -117,13 +117,6 @@ return {
     ft = { "rest" },
   },
   {
-    "simrat39/symbols-outline.nvim",
-    opts = require('custom.configs.symbols-outline'),
-    config = function (_, opts)
-      require("symbols-outline").setup(opts)
-    end
-  },
-  {
     'stevearc/dressing.nvim',
     dependencies = {
       "nvim-lua/plenary.nvim",
