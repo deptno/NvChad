@@ -45,7 +45,7 @@ local handle_vV = function ()
   if #matched_handlers == 1 then
     local matched_handler = matched_handlers[#matched_handlers]
 
-    matched_handler.handler(lines, matched_handler.match(lines))
+    matched_handler.handler({ range = range, lines = lines })
   elseif #matched_handlers > 1 then
     vim.ui.select(
       matched_handlers,
