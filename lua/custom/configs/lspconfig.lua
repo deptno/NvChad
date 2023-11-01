@@ -19,6 +19,7 @@ local servers = {
   "html",
   "emmet_language_server",
   "tailwindcss",
+  "marksman",
 }
 
 for _, lsp in ipairs(servers) do
