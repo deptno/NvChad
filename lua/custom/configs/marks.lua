@@ -7,6 +7,7 @@ return {
   sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
   excluded_filetypes = {
     '',
+    'NvimTree',
   },
   bookmark_1 = { sign = "1", virt_text = "🐮 1", annotate = false },
   bookmark_2 = { sign = "2", virt_text = "🐮 2", annotate = false },
