@@ -21,7 +21,27 @@ M.disabled = {
     ["<leader>x"] = "",
     ["<tab>"] = "",
     ["<S-tab>"] = "",
-  }
+    -- lspconfig
+    ["gD"] = "",
+    ["gd"] = "",
+    ["K"] = "",
+    ["gi"] = "",
+    -- ["<leader>ls"] = "",
+    -- ["<leader>D"] = "",
+    ["<leader>ra"] = "",
+    ["<leader>ca"] = "",
+    ["gr"] = "",
+    -- ["<leader>f"] = "",
+    ["[d"] = "",
+    ["]d"] = "",
+    -- ["<leader>q"] = "",
+    -- ["<leader>wa"] = "",
+    -- ["<leader>wr"] = "",
+    -- ["<leader>wl"] = "",
+  },
+  v = {
+    ["<leader>ca"] = "",
+  },
 }
 -- Your custom mappings
 M.general = {
@@ -391,15 +411,19 @@ M.lspsaga = {
     ["<leader>dw"] = createFxSaga('Lspsaga show_workspace_diagnostics ++normal'),
     ["[e"] = createFxSaga('Lspsaga diagnostic_jump_prev'),
     ["]e"] = createFxSaga('Lspsaga diagnostic_jump_next'),
-    ["<leader>rA"] = createFxSaga('Lspsaga rename ++project'),
+    ["<leader>ra"] = createFxSaga('Lspsaga rename ++project'),
+    ["<leader>ca"] = createFxSaga('Lspsaga code_action'),
     ["gi"] = createFxSaga('Lspsaga incoming_calls'),
     ["gP"] = createFxSaga('Lspsaga peek_type_definition'),
     ["gp"] = createFxSaga('Lspsaga goto_type_definition'),
     ["gD"] = createFxSaga('Lspsaga peek_definition'),
     ["gd"] = createFxSaga('Lspsaga goto_definition'),
     ["gr"] = createFxSaga('Lspsaga finder def+ref+imp+tyd'),
-    ["<leader>2"] = createFxSaga('Lspsaga outline'),
+    ["<leader>1"] = createFxSaga('Lspsaga outline'),
     ["K"] = createFxSaga('Lspsaga hover_doc'),
+  },
+  v = {
+    ["<leader>ca"] = createFxSaga('Lspsaga code_action'),
   }
 }
 M.blame = {
