@@ -247,5 +247,23 @@ return {
       virtual_style = 'float'
     },
     event = 'VeryLazy'
-  }
+  },
+  {
+    "nvimdev/guard.nvim",
+    dependencies = {
+      "nvimdev/guard-collection",
+    },
+    config = function ()
+      local ft = require('guard.filetype')
+
+      ft('typescript,javascript,javascriptreact,typescriptreact')
+        :lint('eslint_d')
+        :fmt('prettier')
+
+      require('guard').setup({
+        lsp_as_default_formatter = false,
+      })
+    end,
+    event = 'LspAttach',
+  },
 }

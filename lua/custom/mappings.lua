@@ -439,5 +439,18 @@ M.blame = {
     }
   }
 }
+M.guard = {
+  n = {
+    ["<leader>fm"] = {
+      function ()
+        if not package.loaded['guard'] then
+          return vim.notify('plugin:guard is not loaded', vim.log.levels.WARN)
+        end
+        vim.cmd("GuardFmt")
+      end,
+      'format'
+    }
+  }
+}
 
 return M
