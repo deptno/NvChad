@@ -452,5 +452,27 @@ M.guard = {
     }
   }
 }
+M.hover = {
+  n = {
+    ["K"] = {
+      function ()
+        if not package.loaded['hover'] then
+          return vim.notify('plugin:hover is not loaded', vim.log.levels.WARN)
+        end
+        require("hover").hover()
+      end,
+      'hover.nvim'
+    },
+    ["gK"] = {
+      function ()
+        if not package.loaded['hover'] then
+          return vim.notify('plugin:hover is not loaded', vim.log.levels.WARN)
+        end
+        require("hover").hover_select()
+      end,
+      'hover.nvim select'
+    }
+  }
+}
 
 return M
