@@ -186,6 +186,12 @@ M.telescope = {
       end,
       "LSP lsp_dynamic_workspace_symbols"
     },
+    ["<leader>gs"] = {
+      function ()
+        require('telescope.builtin').grep_string({ shorten_path = true, word_match = "-w", only_sort_text = true, search = '' })
+      end,
+      "Grep string"
+    },
   }
 }
 M.nvimtree = {
