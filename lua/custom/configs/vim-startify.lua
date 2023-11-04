@@ -29,7 +29,7 @@ vim.g.startify_bookmarks = {
   { z = '~/.zshrc' },
   { g = '~/.gitconfig' },
   { f = '~/.finicky.js' },
-  { r = '~/tmp/rest.http' },
+  { r = '~/tmp/rest.rest' },
   { t = '~/.tmux.conf' },
   '~/.taskrc',
 }
