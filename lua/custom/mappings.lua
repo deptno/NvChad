@@ -165,6 +165,13 @@ tmux display-popup \
       end,
       "Open lazygit"
     },
+    -- base46
+    ["<leader>tt"] = {
+      function ()
+        require('base46').toggle_theme()
+      end,
+      "Toggle theme",
+    },
   },
   v = {
     ["H"] = {
