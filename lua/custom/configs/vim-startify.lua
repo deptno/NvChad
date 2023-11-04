@@ -26,11 +26,11 @@ vim.g.startify_session_autoload = 0
 vim.g.startify_skiplist = { '.*OUTLINE$' }
 vim.g.startify_enable_special = 0
 vim.g.startify_bookmarks = {
-  { bz = '~/.zshrc' },
-  { bg = '~/.gitconfig' },
-  { bf = '~/.finicky.js' },
-  { br = '~/tmp/rest.http' },
-  { bt = '~/.tmux.conf' },
+  { z = '~/.zshrc' },
+  { g = '~/.gitconfig' },
+  { f = '~/.finicky.js' },
+  { r = '~/tmp/rest.http' },
+  { t = '~/.tmux.conf' },
   '~/.taskrc',
 }
 vim.g.startify_lists = {
