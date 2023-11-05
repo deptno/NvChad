@@ -504,7 +504,7 @@ M.hover = {
 }
 M.dap = {
   n = {
-    ["<leader>bR"] = {
+    ["<leader>br"] = {
       function ()
         require'dap'.run_to_cursor()
       end,
@@ -576,7 +576,7 @@ M.dap = {
       end,
       "dap: Quit"
     },
-    ["<leader>br"] = {
+    ["<leader>bR"] = {
       function ()
         require'dap'.repl.toggle()
       end,
