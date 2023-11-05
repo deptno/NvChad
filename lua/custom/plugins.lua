@@ -339,6 +339,14 @@ return {
             webRoot = "${workspaceFolder}",
             userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
           },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:8081'",
+            url = "http://localhost:8081/debugger-ui/",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
         }
       end
     end,
