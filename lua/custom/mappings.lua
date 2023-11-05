@@ -496,5 +496,122 @@ M.hover = {
     }
   }
 }
+M.dap = {
+  n = {
+    ["<leader>bR"] = {
+      function ()
+        require'dap'.run_to_cursor()
+      end,
+      "dap: Run to Cursor"
+    },
+    ["<leader>bC"] = {
+      function ()
+        require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')
+      end,
+      "dap: Conditional Breakpoint"
+    },
+    ["<leader>bb"] = {
+      function ()
+        require'dap'.step_back()
+      end,
+      "dap: Step Back"
+    },
+    ["<leader>bc"] = {
+      function ()
+        require'dap'.continue()
+      end,
+      "dap: Continue"
+    },
+    ["<leader>bd"] = {
+      function ()
+        require'dap'.disconnect()
+      end,
+      "dap: Disconnect"
+    },
+    ["<leader>bg"] = {
+      function ()
+        require'dap'.session()
+      end,
+      "dap: Get Session"
+    },
+    ["<leader>bh"] = {
+      function ()
+        require'dap.ui.widgets'.hover()
+      end,
+      "dap: Hover Variables"
+    },
+    ["<leader>bS"] = {
+      function ()
+        require'dap.ui.widgets'.scopes()
+      end,
+      "dap: Scopes"
+    },
+    ["<leader>bi"] = {
+      function ()
+        require'dap'.step_into()
+      end,
+      "dap: Step Into"
+    },
+    ["<leader>bo"] = {
+      function ()
+        require'dap'.step_over()
+      end,
+      "dap: Step Over"
+    },
+    ["<leader>bp"] = {
+      function ()
+        require'dap'.pause.toggle()
+      end,
+      "dap: Pause"
+    },
+    ["<leader>bq"] = {
+      function ()
+        require'dap'.close()
+      end,
+      "dap: Quit"
+    },
+    ["<leader>br"] = {
+      function ()
+        require'dap'.repl.toggle()
+      end,
+      "dap: Toggle Repl"
+    },
+    ["<leader>bs"] = {
+      function ()
+        require'dap'.continue()
+      end,
+      "dap: Start"
+    },
+    ["<leader>bt"] = {
+      function ()
+        require'dap'.toggle_breakpoint()
+      end,
+      "dap: Toggle Breakpoint"
+    },
+    ["<leader>bx"] = {
+      function ()
+        require'dap'.terminate()
+      end,
+      "dap: Terminate"
+    },
+    ["<leader>bu"] = {
+      function ()
+        require'dap'.step_out()
+      end,
+      "dap: Step Out"
+    },
+  }
+}
+M.dapui = {
+  n = {
+    ["<leader>bE"] = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
+    ["<leader>b;"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
+    ["<leader>be"] = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+
+  },
+  v = {
+    -- TODO:  범위 코드 evaluation
+  }
+}
 
 return M
