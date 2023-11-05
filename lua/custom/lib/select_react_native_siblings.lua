@@ -1,4 +1,5 @@
 local get_suffix_siblings = require('custom/lib/get_suffix_siblings')
+local get_git_root        = require('lab.gx.lib.get_git_root')
 
 local select_react_native_siblings = function ()
   local infixes = {
@@ -13,7 +14,14 @@ local select_react_native_siblings = function ()
 
   if siblings then
     if #siblings > 0 then
-      local filename = vim.fn.fnamemodify(vim.fn.expand('%'), ':~')
+      local filename = vim.fn.expand('%')
+      local git_root, ok = get_git_root(vim.fs.dirname(filename))
+
+      if ok == 'ok' then
+        filename = filename:sub(#git_root + 1)
+      else
+        filename = vim.fn.fnamemodify(filename, ':~')
+      end
 
       vim.ui.select(
         siblings,
