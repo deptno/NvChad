@@ -14,7 +14,7 @@ return {
     'sagacallhierarchy',
     'dap-float',
     'dap-repl',
-    'dap-hover',
+    'dapui_hover',
     'dapui_console',
     'dapui_repl',
     'dapui_watches',
