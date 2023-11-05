@@ -626,11 +626,14 @@ M.dapui = {
   }
 }
 M.wip = {
-  ["<leader>;"] = {
-    select_react_native_siblings,
-    'wip: select react native siblings'
+  n = {
+    ["<leader>;"] = {
+      function ()
+        select_react_native_siblings()
+      end,
+      'wip: select react native siblings'
+    }
   }
-
 }
 
 return M
