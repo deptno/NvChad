@@ -5,6 +5,7 @@ local get_visual_selection_text = require('custom/lib/get_visual_selection_text'
 local tmux = require('custom/lib/create_tmux_split_window')
 local repl = require('custom/lib/repl')
 local get_git_root = require('lab.gx.lib.get_git_root')
+local select_react_native_siblings = require('custom/lib/select_react_native_siblings')
 
 -- In order to disable a default keymap, use
 M.disabled = {
@@ -619,11 +620,17 @@ M.dapui = {
     ["<leader>bE"] = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
     ["<leader>b;"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
     ["<leader>be"] = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
-
   },
   v = {
     -- TODO:  범위 코드 evaluation
   }
+}
+M.wip = {
+  ["<leader>;"] = {
+    select_react_native_siblings,
+    'wip: select react native siblings'
+  }
+
 }
 
 return M
