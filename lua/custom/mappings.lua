@@ -606,6 +606,12 @@ M.dap = {
       end,
       "dap: Step Out"
     },
+    ["<leader>bl"] = {
+      function ()
+        vim.cmd('DapShowLog')
+      end,
+      "dap: Step Out"
+    },
   }
 }
 M.dapui = {
