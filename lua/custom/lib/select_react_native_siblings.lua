@@ -13,15 +13,18 @@ local select_react_native_siblings = function ()
 
   if siblings then
     if #siblings > 0 then
-      local filename = vim.fs.basename(vim.fn.expand('%'))
+      local filename = vim.fn.fnamemodify(vim.fn.expand('%'), ':~')
 
       vim.ui.select(
         siblings,
         {
           prompt = string.format('Select sibling of %s:', filename),
+          format_item = function (item)
+            return string.format('%s', vim.fs.basename(item))
+          end
         },
-        function(sibling)
-          vim.cmd(string.format('edit %s', vim.fn.basename(sibling)))
+        function(item)
+          vim.cmd(string.format('edit %s', item))
         end
       )
     end
