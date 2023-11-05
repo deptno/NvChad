@@ -1,3 +1,4 @@
+local file_exists = require "lab.gx.lib.file_exists"
 return {
   {
     "neovim/nvim-lspconfig",
@@ -246,5 +247,101 @@ return {
       }
     end,
     event = 'VeryLazy'
+  },
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'mxsdev/nvim-dap-vscode-js',
+      {
+        'microsoft/vscode-js-debug',
+        version = '1.x',
+        build = 'npm i && npm run compile vsDebugServerBundle && mv dist out'
+      }
+    },
+    config = function ()
+      require('dapui').setup()
+
+      local debugger_path = vim.fn.stdpath('data') .. "/lazy/vscode-js-debug"
+      require('dap-vscode-js').setup({
+        debugger_path = debugger_path,
+        adapters = {
+          'pwa-node',
+          'pwa-chrome',
+          'pwa-msedge',
+          'node-terminal',
+          'pwa-extensionHost',
+        }
+      })
+
+      local js_based_languages = { "typescript", "javascript", "typescriptreact" }
+      for _, language in ipairs(js_based_languages) do
+        require("dap").configurations[language] = {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach",
+            processId = require('dap.utils').pick_process,
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:3000'",
+            url = "http://localhost:3000",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:3001'",
+            url = "http://localhost:3001",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:3002'",
+            url = "http://localhost:3002",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:4000'",
+            url = "http://localhost:4000",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:4001'",
+            url = "http://localhost:4001",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
+          {
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Start Chrome with 'localhost:4002'",
+            url = "http://localhost:4002",
+            webRoot = "${workspaceFolder}",
+            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+          },
+        }
+      end
+    end,
+    event = 'LspAttach'
   },
 }

@@ -9,6 +9,8 @@ local get_git_root = require('lab.gx.lib.get_git_root')
 -- In order to disable a default keymap, use
 M.disabled = {
   n = {
+    -- chad
+    ["<leader>b"] = "",
     -- nvimtree
     ["<C-n>"] = "",
     ["<leader>e"] = "",
@@ -313,9 +315,16 @@ M.tabufline = {
       end,
       "Goto prev buffer",
     },
+    ["=b"] = {
+      function()
+        vim.cmd("enew")
+      end,
+      "New buffer"
+    },
     ["-b"] = {
       function()
-        require("tabscope").remove_tab_buffer()
+        -- require("tabscope").remove_tab_buffer()
+        vim.cmd("bwipeout")
       end,
       "Close buffer",
     },
