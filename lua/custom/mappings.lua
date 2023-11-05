@@ -201,6 +201,12 @@ M.telescope = {
       end,
       "Grep string"
     },
+    ["<leader>fk"] = {
+      function ()
+        require('telescope.builtin').keymaps()
+      end,
+      "telescope: keymaps"
+    },
   }
 }
 M.nvimtree = {
