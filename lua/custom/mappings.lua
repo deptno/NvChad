@@ -669,7 +669,7 @@ M.harpoon = {
       end,
       "harpoon: toggle quick menu: cmd"
     },
-      }
+  }
 }
 M.trouble = {
   n = {
@@ -690,7 +690,13 @@ M.wip = {
         select_react_native_siblings()
       end,
       'wip: select react native siblings'
-    }
+    },
+
+    ["<leader>n1"] = { function () require('neotest').run.run() end, 'wip' },
+    ["<leader>n2"] = { function () require('neotest').run.run(vim.fn.expand('%')) end, 'wip' },
+    ["<leader>n3"] = { function () require('neotest').summary.toggle() end, 'wip' },
+    ["<leader>n4"] = { function () require('neotest').output_panel.toggle() end, 'wip' },
+    ["<leader>n5"] = { function () require('neotest').output.open() end, 'wip' },
   }
 }
 

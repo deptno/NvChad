@@ -1,3 +1,5 @@
+local get_git_root = require "lab.gx.lib.get_git_root"
+
 return {
   {
     'folke/neodev.nvim',
@@ -382,5 +384,57 @@ return {
       vim.keymap.set("n", "<leader>xi", function() require("trouble").toggle("lsp_implementations") end),
       vim.keymap.set("n", "<leader>xt", function() require("trouble").toggle("lsp_type_definitions") end),
     }
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-plenary",
+      "nvim-neotest/neotest-jest",
+      'marilari88/neotest-vitest',
+    },
+    opts = function ()
+      return {
+        status = { virtual_text = true },
+        output = { open_on_run = true },
+        adapters = {
+          require('neotest-plenary'),
+          require('neotest-vitest'),
+          require('neotest-jest')({
+            jestCommand = "yarn jest --",
+            env = { CI = true },
+            jestConfigFile = function()
+              local file = vim.fn.expand('%:p')
+              if string.find(file, "/packages/") then
+                local ret = 
+                string.match(file, "(.-/[^/]+/)src") .. "jest.config.ts"
+                or string.match(file, "(.-/[^/]+/)src") .. "jest.config.js"
+
+                vim.print("configfile: " .. ret)
+                return ret
+              end
+
+              return vim.fn.getcwd() .. "/jest.config.ts"
+            end,
+            cwd = function(path)
+              local file = path or vim.fn.expand('%:p')
+              local git_root = get_git_root()
+              local relative_file = file:sub(#git_root + 1)
+              if string.find(relative_file, "/packages/") then
+                local ret = string.match(relative_file, "(.-/[^/]+/)src")
+
+                if ret then
+                  return git_root .. ret
+                end
+
+                return ret
+              end
+              return vim.fn.getcwd()
+            end,
+          }),
+        }
+      }
+    end
   },
 }
