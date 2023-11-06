@@ -331,6 +331,7 @@ M.tabufline = {
     ["-b"] = {
       function()
         -- require("tabscope").remove_tab_buffer()
+        -- require("tabscope").close_buffer()
         vim.cmd("bwipeout")
       end,
       "Close buffer",
@@ -624,6 +625,48 @@ M.dapui = {
   v = {
     -- TODO:  범위 코드 evaluation
   }
+}
+M.harpoon = {
+  n = {
+    ["<leader>hh"] = {
+      function ()
+        require('harpoon.ui').toggle_quick_menu()
+      end,
+      "harpoon: toggle quick menu"
+    },
+    ["]h"] = {
+      function ()
+        require('harpoon.ui').nav_next()
+      end,
+      "harpoon: nav next"
+    },
+    ["[h"] = {
+      function ()
+        require('harpoon.ui').nav_prev()
+      end,
+      "harpoon: nav prev"
+    },
+    ["<leader>ha"] = {
+      function ()
+        require('harpoon.mark').add_file()
+        vim.notify(string.format('mark'))
+      end,
+      "harpoon: add mark"
+    },
+    ["<leader>hd"] = {
+      function ()
+        require('harpoon.mark').rm_file()
+        vim.notify(string.format('unmark'))
+      end,
+      "harpoon: remove mark"
+    },
+    ["<leader>hf"] = {
+      function ()
+        vim.cmd('Telescope harpoon marks')
+      end,
+      "harpoon: toggle quick menu: cmd"
+    },
+      }
 }
 M.wip = {
   n = {
