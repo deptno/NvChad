@@ -1,4 +1,3 @@
-local file_exists = require "lab.gx.lib.file_exists"
 return {
   {
     "neovim/nvim-lspconfig",
@@ -352,4 +351,10 @@ return {
     end,
     event = 'LspAttach'
   },
+  {
+    'ThePrimeagen/harpoon',
+    config = function ()
+      require("telescope").load_extension("harpoon")
+    end,
+  }
 }
