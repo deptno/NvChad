@@ -41,6 +41,9 @@ M.disabled = {
     -- ["<leader>wa"] = "",
     -- ["<leader>wr"] = "",
     -- ["<leader>wl"] = "",
+    -- term
+    ["<leader>h"] = "",
+    ["<leader>v"] = "",
   },
   v = {
     ["<leader>ca"] = "",
