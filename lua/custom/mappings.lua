@@ -331,6 +331,7 @@ M.tabufline = {
     ["-b"] = {
       function()
         -- require("tabscope").remove_tab_buffer()
+        -- require("tabscope").close_buffer()
         vim.cmd("bwipeout")
       end,
       "Close buffer",
