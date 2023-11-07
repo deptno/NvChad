@@ -671,6 +671,18 @@ M.harpoon = {
     },
       }
 }
+M.trouble = {
+  n = {
+      ["<leader>xx"] = { function() require("trouble").toggle() end, 'trouble: toggle' },
+      ["<leader>xw"] = { function() require("trouble").toggle("workspace_diagnostics") end, 'trouble: workspace_diagnostics' },
+      ["<leader>xd"] = { function() require("trouble").toggle("document_diagnostics") end, 'trouble: document_diagnostics' },
+      ["<leader>xq"] = { function() require("trouble").toggle("quickfix") end, 'trouble: quickfix' },
+      ["<leader>xl"] = { function() require("trouble").toggle("loclist") end, 'trouble: loclist' },
+      ["<leader>xr"] = { function() require("trouble").toggle("lsp_references") end, 'trouble: lsp_references' },
+      ["<leader>xi"] = { function() require("trouble").toggle("lsp_implementations") end, 'trouble: lsp_implementations' },
+      ["<leader>xt"] = { function() require("trouble").toggle("lsp_type_definitions") end, 'trouble: lsp_type_definitions' },
+  },
+}
 M.wip = {
   n = {
     ["<leader>;"] = {
