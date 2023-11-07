@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
           local in_dir = cwd == name:sub(1, #cwd)
 
           if not in_dir then
-            vim.api.nvim_buf_delete(bufnr, { force = false })
+            vim.api.nvim_buf_delete(bufnr, { force = true })
             -- if vim.api.nvim_buf_is_loaded(bufnr) then else end
           end
         end
