@@ -5,7 +5,7 @@ local handler = function (line, matched)
     return vim.notify('unsupported os: ' .. os, vim.log.levels.WARN)
   end
 
-  local command = string.format('open %s', matched)
+  local command = string.format([[open '%s']], matched)
   vim.fn.system(command)
   vim.notify(command)
 end
