@@ -20,5 +20,14 @@ vim.g.vimwiki_list = {
     diary_index = "index",
     auto_diary_index = 1
   },
+  {
+    name = "career",
+    path = "~/workspace/src/github.com/deptno/wiki-career",
+    ext  = ".md",
+    diary_rel_path = "diary",
+    diary_index = "index",
+    auto_diary_index = 1
+  },
+
 }
 vim.treesitter.language.register('markdown', 'vimwiki')
