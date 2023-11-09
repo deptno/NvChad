@@ -383,4 +383,21 @@ return {
       vim.keymap.set("n", "<leader>xt", function() require("trouble").toggle("lsp_type_definitions") end),
     }
   },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("octo").setup({
+        gh_env = {
+          GITHUB_TOKEN = vim.env.GITHUB_TOKEN_ZB,
+        },
+      })
+      vim.treesitter.language.register("markdown", "octo")
+    end,
+    event = "VeryLazy",
+  },
 }
