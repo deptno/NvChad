@@ -228,6 +228,9 @@ return {
       ft('typescript,javascript,javascriptreact,typescriptreact')
         :lint('eslint_d')
         :fmt('prettier')
+      ft('lua')
+        :lint('selene')
+        :fmt('stylua')
 
       require('guard').setup({
         lsp_as_default_formatter = false,
