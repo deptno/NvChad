@@ -234,6 +234,7 @@ return {
 
       require('guard').setup({
         lsp_as_default_formatter = false,
+        fmt_on_save = false,
       })
     end,
     event = 'LspAttach',
