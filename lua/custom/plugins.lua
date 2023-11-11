@@ -79,7 +79,7 @@ return {
   },
   {
     "vimwiki/vimwiki",
-    config = function()
+    init = function()
       require("custom.configs.vimwiki")
     end,
     ft = { "markdown" },
