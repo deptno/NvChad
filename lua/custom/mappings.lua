@@ -339,6 +339,12 @@ M.tabufline = {
       end,
       "Close buffer",
     },
+    ["\\b"] = {
+      function()
+        vim.cmd("%bd|e#")
+      end,
+      "Close other buffers",
+    },
   },
 }
 M.startify = {
