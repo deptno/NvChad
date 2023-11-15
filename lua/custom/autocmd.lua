@@ -21,3 +21,11 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
     end)
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = '*.jira',
+  group = vim.api.nvim_create_augroup("AddJiraFileType", { clear = true }),
+  callback = function(ev)
+    vim.api.nvim_buf_set_option(ev.buf, "filetype", 'mdr')
+  end,
+})
