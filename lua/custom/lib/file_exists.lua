@@ -1,4 +1,4 @@
-local file_exists = function (file)
+local file_exists = function(file)
   local f = io.open(file, "rb")
 
   if f then

@@ -1,6 +1,6 @@
-local remove_suffix = require("lab/gx/lib/remove_suffix")
+local remove_suffix = require("custom/lib/remove_suffix")
 
-local parse_repository = function (origin)
+local parse_repository = function(origin)
   local parts = {}
 
   for part in origin:gmatch("[^@:/]+") do
@@ -9,7 +9,7 @@ local parse_repository = function (origin)
 
   local domain = parts[2]
   local username = parts[3]
-  local repository = remove_suffix('.git', parts[4])
+  local repository = remove_suffix(".git", parts[4])
 
   return {
     domain = domain,

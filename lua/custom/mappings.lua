@@ -4,7 +4,7 @@ local create_toggle_to_fit_width = require('custom/lib/create_toggle_to_fit_widt
 local get_visual_selection_text = require('custom/lib/get_visual_selection_text')
 local tmux = require('custom/lib/create_tmux_split_window')
 local repl = require('custom/lib/repl')
-local get_git_root = require('lab.gx.lib.get_git_root')
+local get_git_root = require('custom/lib/get_git_root')
 local select_react_native_siblings = require('custom/lib/select_react_native_siblings')
 
 -- In order to disable a default keymap, use

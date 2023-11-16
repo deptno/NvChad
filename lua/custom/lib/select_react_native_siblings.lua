@@ -1,5 +1,5 @@
 local get_suffix_siblings = require('custom/lib/get_suffix_siblings')
-local get_git_root        = require('lab.gx.lib.get_git_root')
+local get_git_root        = require('custom/lib/get_git_root')
 
 local select_react_native_siblings = function ()
   local infixes = {
