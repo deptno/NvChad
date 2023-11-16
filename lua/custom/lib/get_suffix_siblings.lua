@@ -1,4 +1,4 @@
-local file_exists = require('lab/gx/lib/file_exists')
+local file_exists = require('custom.lib.file_exists')
 local map         = require('custom.lib.map')
 
 ---주어진 infixes 를 기반으로 infix 가 없는 경우를 포함하여 존재하는 파일 목록을 리턴

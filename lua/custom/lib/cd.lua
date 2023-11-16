@@ -1,7 +1,7 @@
 local get_current_session_name = require('custom/lib/get_current_session_name')
-local get_git_root = require('lab/gx/lib/get_git_root')
-local get_git_branch_info = require('lab/gx/lib/get_git_branch_info')
-local get_git_remote_info = require('lab/gx/lib/get_git_remote_info')
+local get_git_root = require('custom/lib/get_git_root')
+local get_git_branch_info = require('custom/lib/get_git_branch_info')
+local get_git_remote_info = require('custom/lib/get_git_remote_info')
 
 local function notify(title)
   local git_root = get_git_root()
