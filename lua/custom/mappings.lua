@@ -287,7 +287,7 @@ M.gitsigns = {
       function()
         require("gitsigns").undo_stage_hunk()
       end,
-      "Stage stage hunk",
+      "Undo stage stage hunk",
     },
     [",q"] = {
       function()
