@@ -178,6 +178,12 @@ tmux display-popup \
       end,
       "Toggle theme",
     },
+    ["<leader>rs"] = {
+      function ()
+        require('custom.snippet')()
+      end,
+      "run snippet",
+    },
   },
   v = {
     ["H"] = {
