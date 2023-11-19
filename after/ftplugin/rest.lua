@@ -7,10 +7,15 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
       buffer = true
     }
     local handler = function ()
+      local ft = vim.bo.filetype
+
+      if ft ~= 'rest' then
+        return vim.notify(string.format('file type is not %s', ft), vim.log.levels.WARN)
+      end
+
       vim.cmd('quit')
     end
 
     vim.keymap.set('n', 'q', handler, opts)
-    vim.keymap.set('n', '<ESC>', handler, opts)
   end,
 })
