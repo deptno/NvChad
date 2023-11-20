@@ -1,5 +1,4 @@
 local filter = require "custom.lib.filter"
-local map = require "custom.lib.map"
 local snippet = function ()
   local snippets = filter(
     function (v)
@@ -16,11 +15,8 @@ local snippet = function ()
     function(item)
       local ext = vim.fn.fnamemodify(item, ':e')
 
-      vim.notify(string.format('item: %s, filename: %s.%s', item, filename, ext), vim.log.levels.TRACE)
-
       if ext == 'lua' then
         local result  = loadfile(item)()
-        vim.notify(string.format('%s executed: ', item, result))
       else
         vim.notify(string.format('unsupported extension: %s', ext), vim.log.levels.WARN)
       end
