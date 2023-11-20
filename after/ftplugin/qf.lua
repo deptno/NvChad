@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("QuickFixFiletype", { clear = true }),
   callback = function(ev)
     vim.notify('*warning* autocmd QuickFixFiletype', vim.log.levels.TRACE)

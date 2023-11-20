@@ -20,7 +20,7 @@ EOF']], content)
   vim.fn.system(command)
 end
 
-vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("JsonFiletype", {}),
   callback = function(ev)
     local opts = {

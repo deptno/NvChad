@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({"BufWinEnter", "BufEnter"}, {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("SagaRenameFiletype", {}),
   callback = function(ev)
     local handler = function ()

@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "*.md",
   group = vim.api.nvim_create_augroup("VimwikiFiletype", {}),
   callback = function(ev)
