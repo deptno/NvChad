@@ -484,18 +484,18 @@ M.blame = {
     }
   }
 }
-M.guard = {
+M.conform = {
   n = {
     ["<leader>fm"] = {
-      function ()
-        if not package.loaded['guard'] then
-          return vim.notify('plugin:guard is not loaded', vim.log.levels.WARN)
+      function()
+        if not package.loaded["conform"] then
+          return vim.notify("plugin:conform is not loaded", vim.log.levels.WARN)
         end
-        vim.cmd("GuardFmt")
+        require("conform").format({ async = true, lsp_fallback = true })
       end,
-      'format'
-    }
-  }
+      "format",
+    },
+  },
 }
 M.hover = {
   n = {

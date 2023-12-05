@@ -218,25 +218,27 @@ return {
     event = 'VeryLazy'
   },
   {
-    "nvimdev/guard.nvim",
-    dependencies = {
-      "nvimdev/guard-collection",
+    "stevearc/conform.nvim",
+    opts = {
+      -- Define your formatters
+      formatters_by_ft = {
+        lua = { "stylua" },
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+      },
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2" },
+        },
+      },
     },
-    config = function ()
-      local ft = require('guard.filetype')
-
-      ft('typescript,javascript,javascriptreact,typescriptreact')
-        :lint('eslint_d')
-        :fmt('prettier')
-      ft('lua')
-        :lint('selene')
-        :fmt('stylua')
-
-      require('guard').setup({
-        lsp_as_default_formatter = false,
-        fmt_on_save = false,
-      })
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
+    cmd = { "ConformInfo" },
     event = 'LspAttach',
   },
   {
