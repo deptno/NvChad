@@ -22,6 +22,10 @@ return {
     },
     sorting_strategy = "descending",
     -- file_ignore_patterns
+    mappings = {
+      i = { ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble },
+      n = { ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble },
+    },
   },
   pickers = {
     find_files = { theme = 'ivy' },
