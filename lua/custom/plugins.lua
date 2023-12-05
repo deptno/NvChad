@@ -223,10 +223,10 @@ return {
       -- Define your formatters
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { { "prettier", "eslint_d" } },
-        javascriptreact = { { "prettier", "eslint_d" } },
-        typescript = { { "prettier", "eslint_d" } },
-        typescriptreact = { { "prettier", "eslint_d" } },
+        javascript = { "eslint_d", "prettier" },
+        javascriptreact = { "eslint_d", "prettier" },
+        typescript = { "eslint_d", "prettier" },
+        typescriptreact = { "eslint_d", "prettier" },
       },
       formatters = {
         shfmt = {
