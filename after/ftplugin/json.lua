@@ -4,7 +4,7 @@ local get_buf_content = function ()
 
   return table.concat(buffer_content)
 end
-local run_fx = function ()
+local handler = function ()
   local content = get_buf_content()
   local command = string.format([[
 tmux display-popup \
@@ -27,6 +27,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       buffer = true
     }
 
-    vim.keymap.set('n', '.', run_fx, opts)
+    vim.keymap.set("n", ";v", handler, opts)
   end
 })
