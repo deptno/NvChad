@@ -7,6 +7,6 @@ return {
     'gitcommit',
     'octo',
     'NeogitCommitMessage',
-    'vimwiki',
+    'markdown',
   }
 }
