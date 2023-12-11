@@ -31,7 +31,7 @@ vim.g.startify_bookmarks = {
   { f = '~/.finicky.js' },
   { r = '~/tmp/rest.rest' },
   { t = '~/.tmux.conf' },
-  '~/.taskrc',
+  { fj = '~/tmp/dummy.json' },
 }
 vim.g.startify_lists = {
     { type = 'dir', header = { '   📂 Current directory ' .. vim.fn.getcwd() } },
