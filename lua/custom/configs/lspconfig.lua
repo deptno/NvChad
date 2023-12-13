@@ -21,9 +21,16 @@ local servers = {
   "tailwindcss",
   "marksman",
 }
+local utils = require "core.utils"
+local on_init = function (client)
+  if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
+end
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
+    on_init = on_init,
     on_attach = on_attach,
     capabilities = capabilities,
   }
