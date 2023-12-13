@@ -223,7 +223,17 @@ M.nvimtree = {
   n = {
     ["sf"] = {
       function ()
-        require("nvim-tree.api").tree.toggle()
+        local tree = require("nvim-tree.api").tree
+        if tree.is_tree_buf() then
+          return
+        end
+
+        local visible = tree.is_visible()
+        if visible then
+          return tree.focus()
+        end
+
+        tree.open()
       end,
       "Toggle nvimtree"
     },
