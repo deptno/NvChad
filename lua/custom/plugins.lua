@@ -449,6 +449,23 @@ return {
     },
   },
   {
+    'crusj/bookmarks.nvim',
+    branch = 'main',
+    dependencies = { 'nvim-web-devicons' },
+    config = function()
+      require("bookmarks").setup({
+        keymap = {
+          toggle = "<F3>",
+        },
+        sign_icon = "🌺",
+        width = 0.9,
+        height = 0.9,
+      })
+      require("telescope").load_extension("bookmarks")
+    end,
+    event = "VeryLazy",
+  },
+  {
     'deptno/gx.nvim',
     -- dir = '/Users/deptno/workspace/src/github.com/deptno/gx.nvim',
     config = function ()
