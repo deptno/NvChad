@@ -22,6 +22,8 @@ return {
     'dapui_scopes',
     'dapui_breakpoints',
     'harpoon',
+    'btags',
+    'bookmarks',
   },
   bookmark_1 = { sign = "1", virt_text = "🐮 1", annotate = false },
   bookmark_2 = { sign = "2", virt_text = "🐮 2", annotate = false },
