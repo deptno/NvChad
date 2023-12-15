@@ -66,16 +66,17 @@ M.general = {
     },
     ["=t"] = {
       function()
-        vim.cmd('tabnew')
-        require("telescope.builtin").find_files({
-          hidden=true,
-          layout_config={ prompt_position = "bottom" }
-        })
+        vim.cmd('tabe %')
       end,
       "Create tabpage",
     },
     ["-t"] = {
       function()
+        local tabs = #vim.api.nvim_list_tabpages()
+        if tabs == 1 then
+          return
+        end
+
         vim.cmd('tabclose')
       end,
       "Close tabpage",
@@ -368,15 +369,13 @@ M.tabufline = {
     },
     ["-b"] = {
       function()
-        -- require("tabscope").remove_tab_buffer()
-        -- require("tabscope").close_buffer()
-        vim.cmd("bwipeout")
+        require("nvchad.tabufline").close_buffer()
       end,
       "Close buffer",
     },
     ["\\b"] = {
       function()
-        vim.cmd("%bd|e#")
+        require("nvchad.tabufline").closeOtherBufs()
       end,
       "Close other buffers",
     },
