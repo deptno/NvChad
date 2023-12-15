@@ -184,6 +184,25 @@ tmux display-popup \
       end,
       "run snippet",
     },
+    ["q"] = {
+      function ()
+        local file_type = vim.bo.filetype
+        local ft_list = {
+          'help',
+          'qf',
+          'rest',
+          'saga_codeaction',
+          'sagarename',
+        }
+
+        for _, ft in ipairs(ft_list) do
+          if file_type == ft then
+            vim.cmd('bdelete')
+          end
+        end
+      end,
+      "close by q",
+    },
   },
   v = {
     ["H"] = {
