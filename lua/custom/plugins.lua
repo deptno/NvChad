@@ -85,6 +85,7 @@ return {
     ft = { "markdown" },
     keys = {
       { "<leader>ww", mode = "n", desc = "vimwiki index" },
+      { "<leader>w<leader>w", mode = "n", desc = "vimwiki diary" },
     }
   },
   {
