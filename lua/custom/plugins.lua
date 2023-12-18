@@ -83,6 +83,9 @@ return {
       require("custom.configs.vimwiki")
     end,
     ft = { "markdown" },
+    keys = {
+      { "<leader>ww", mode = "n", desc = "vimwiki index" },
+    }
   },
   {
     "mhinz/vim-startify",
