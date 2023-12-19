@@ -29,7 +29,9 @@ local select_react_native_siblings = function (infixes, suffixes )
           end
         },
         function(item)
-          vim.cmd(string.format('edit %s', item))
+          if item then
+            vim.cmd(string.format('edit %s', item))
+          end
         end
       )
     end
