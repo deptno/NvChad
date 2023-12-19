@@ -729,7 +729,22 @@ M.wip = {
   n = {
     ["<leader>;"] = {
       function ()
-        select_react_native_siblings()
+        local infixes = {
+          'zigbang',
+          'daum',
+          'native',
+          'www',
+          'ios',
+          'android',
+        }
+        local suffixes = {
+          'ts',
+          'tsx',
+          'js',
+          'jsx',
+        }
+
+        select_react_native_siblings(infixes, suffixes)
       end,
       'wip: select react native siblings'
     }
