@@ -26,6 +26,7 @@ vim.g.startify_session_autoload = 0
 vim.g.startify_skiplist = { '.*OUTLINE$' }
 vim.g.startify_enable_special = 0
 vim.g.startify_bookmarks = {
+  { a = '~/.config/alacritty/alacritty.yml' },
   { z = '~/.zshrc' },
   { g = '~/.gitconfig' },
   { f = '~/.finicky.js' },
