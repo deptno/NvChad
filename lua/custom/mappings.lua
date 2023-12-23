@@ -255,9 +255,11 @@ tmux display-popup \
 
         for _, ft in ipairs(ft_list) do
           if file_type == ft then
-            vim.cmd('bdelete')
+            return vim.cmd('bdelete')
           end
         end
+
+        vim.api.nvim_feedkeys('q', 'n', false)
       end,
       "close by q",
     },
