@@ -155,6 +155,41 @@ M.general = {
       end,
       "create tmux vertical panel"
     },
+    ["lz,"] = {
+      function()
+        -- FIXME: get_git_root custom/lib 으로 이동
+        local current_dir = vim.fn.expand('%:p:h')
+        local git_root = get_git_root(current_dir)
+        local work_tree_option = git_root and '-w ' .. git_root or ''
+        vim.notify(work_tree_option)
+        local command = string.format([[
+tmux display-popup \
+-d "#{pane_current_path}" \
+-w 94%% \
+-h 100%% \
+-x 100%% \
+-EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml %s --filter %s/"]], work_tree_option, current_dir)
+        vim.fn.system(command)
+      end,
+      "Open lazygit"
+    },
+    ["lz."] = {
+      function()
+        -- FIXME: get_git_root custom/lib 으로 이동
+        local git_root = get_git_root(vim.fn.expand('%:p:h'))
+        local work_tree_option = git_root and '-w ' .. git_root or ''
+        vim.notify(work_tree_option)
+        local command = string.format([[
+tmux display-popup \
+-d "#{pane_current_path}" \
+-w 94%% \
+-h 100%% \
+-x 100%% \
+-EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml %s --filter %s"]], work_tree_option, vim.api.nvim_buf_get_name(0))
+        vim.fn.system(command)
+      end,
+      "Open lazygit"
+    },
     ["lz"] = {
       function()
         -- FIXME: get_git_root custom/lib 으로 이동
