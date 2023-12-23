@@ -155,9 +155,31 @@ M.general = {
       end,
       "create tmux vertical panel"
     },
+    ["z"] = {
+      function()
+        local file_type = vim.bo.filetype
+        if file_type == 'NvimTree' then
+          local node = require('nvim-tree.api').tree.get_node_under_cursor()
+          if node then
+            local current_dir = node.absolute_path
+            local git_root = get_git_root(current_dir)
+            local work_tree_option = git_root and '-w ' .. git_root or ''
+            vim.notify(work_tree_option)
+            local command = string.format([[
+tmux display-popup \
+-d "#{pane_current_path}" \
+-w 94%% \
+-h 100%% \
+-x 100%% \
+-EE "lazygit -ucf ~/.config/lazygit/neovim/config.yml %s --filter %s"]], work_tree_option, current_dir)
+            vim.fn.system(command)
+          end
+        end
+      end,
+      "get log for node on nvim tree"
+    },
     ["lz,"] = {
       function()
-        -- FIXME: get_git_root custom/lib 으로 이동
         local current_dir = vim.fn.expand('%:p:h')
         local git_root = get_git_root(current_dir)
         local work_tree_option = git_root and '-w ' .. git_root or ''
