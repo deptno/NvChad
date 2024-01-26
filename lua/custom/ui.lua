@@ -1,6 +1,6 @@
 return {
-  theme_toggle = { "github_light", "chocolate" },
-  theme = "chocolate",
+  theme_toggle = { "github_light", "github_dark" },
+  theme = "github_dark",
   statusline = {
     theme = "vscode_colored",
     separator_style = "default",
