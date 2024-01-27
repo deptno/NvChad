@@ -26,13 +26,13 @@ vim.g.startify_session_autoload = 0
 vim.g.startify_skiplist = { '.*OUTLINE$' }
 vim.g.startify_enable_special = 0
 vim.g.startify_bookmarks = {
-  { a = '~/.config/alacritty/alacritty.toml' },
-  { z = '~/.zshrc' },
-  { g = '~/.gitconfig' },
   { f = '~/.finicky.js' },
+  { fj = '~/tmp/dummy.json' },
+  { g = '~/.gitconfig' },
+  { k = '~/.config/kitty/kitty.conf' },
   { r = '~/tmp/rest.rest' },
   { t = '~/.tmux.conf' },
-  { fj = '~/tmp/dummy.json' },
+  { z = '~/.zshrc' },
 }
 vim.g.startify_lists = {
     { type = 'dir', header = { '   📂 Current directory ' .. vim.fn.getcwd() } },
