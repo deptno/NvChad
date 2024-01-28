@@ -49,8 +49,8 @@ local cfg = require("yaml-companion").setup({
   -- Additional schemas available in Telescope picker
   schemas = {
     {
-      name = "Kubernetes 1.26,0",
-      uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.26.0-standalone-strict/all.json",
+      name = "Kubernetes 1.27.6",
+      uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.6-standalone-strict/all.json",
     },
     {
       name = "Azure pipeline",
