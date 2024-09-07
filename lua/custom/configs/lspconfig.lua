@@ -15,7 +15,7 @@ configs.capabilities = capabilities
 local lspconfig = require("lspconfig")
 local servers = {
   "rust_analyzer",
-  "tsserver",
+  "ts_ls",
   "html",
   "emmet_language_server",
   "tailwindcss",
