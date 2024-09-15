@@ -1,11 +1,5 @@
 return {
   {
-    'folke/neodev.nvim',
-    config = function ()
-      require('neodev').setup({})
-    end
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       'folke/neodev.nvim',
@@ -267,110 +261,6 @@ return {
     event = 'VeryLazy'
   },
   {
-    'mfussenegger/nvim-dap',
-    dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'mxsdev/nvim-dap-vscode-js',
-      {
-        'microsoft/vscode-js-debug',
-        version = '1.x',
-        build = 'npm i && npm run compile vsDebugServerBundle && mv dist out'
-      }
-    },
-    config = function ()
-      require('dapui').setup()
-
-      local debugger_path = vim.fn.stdpath('data') .. "/lazy/vscode-js-debug"
-      require('dap-vscode-js').setup({
-        debugger_path = debugger_path,
-        adapters = {
-          'pwa-node',
-          'pwa-chrome',
-          'pwa-msedge',
-          'node-terminal',
-          'pwa-extensionHost',
-        }
-      })
-
-      local js_based_languages = { "typescript", "javascript", "typescriptreact" }
-      for _, language in ipairs(js_based_languages) do
-        require("dap").configurations[language] = {
-          {
-            type = "pwa-node",
-            request = "launch",
-            name = "Launch file",
-            program = "${file}",
-            cwd = "${workspaceFolder}",
-          },
-          {
-            type = "pwa-node",
-            request = "attach",
-            name = "Attach",
-            processId = require('dap.utils').pick_process,
-            cwd = "${workspaceFolder}",
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:3000'",
-            url = "http://localhost:3000",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:3001'",
-            url = "http://localhost:3001",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:3002'",
-            url = "http://localhost:3002",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:4000'",
-            url = "http://localhost:4000",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:4001'",
-            url = "http://localhost:4001",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:4002'",
-            url = "http://localhost:4002",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Start Chrome with 'localhost:8081'",
-            url = "http://localhost:8081/debugger-ui/",
-            webRoot = "${workspaceFolder}",
-            userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-          },
-        }
-      end
-    end,
-    event = 'LspAttach'
-  },
-  {
     'ThePrimeagen/harpoon',
     config = function ()
       require("telescope").load_extension("harpoon")
@@ -501,16 +391,36 @@ return {
             enabled = false,
           },
         },
-        max_width = nil,
-        max_height = nil,
-        max_width_window_percentage = nil,
-        max_height_window_percentage = 50,
-        window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+        max_width = 100, -- tweak to preference
+        max_height = 20, -- ^
+        max_height_window_percentage = math.huge, -- this is necessary for a good experience
+        max_width_window_percentage = math.huge,
+        window_overlap_clear_enabled = true,
         window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+        -- max_width = nil,
+        -- max_height = nil,
+        -- max_width_window_percentage = nil,
+        -- max_height_window_percentage = 50,
+        -- window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+        -- window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
         editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
         tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
         hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
       })
+    end,
+    event = 'VeryLazy',
+  },
+  {
+    "benlubas/molten-nvim",
+    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+    dependencies = {
+      "3rd/image.nvim",
+    },
+    build = ":UpdateRemotePlugins",
+    init = function()
+      -- these are examples, not defaults. Please see the readme
+      vim.g.molten_image_provider = "image.nvim"
+      vim.g.molten_output_win_max_height = 20
     end,
     event = 'VeryLazy',
   },
