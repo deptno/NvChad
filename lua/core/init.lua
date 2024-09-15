@@ -51,10 +51,17 @@ opt.whichwrap:append "<>[]hl"
 
 g.mapleader = " "
 
+-- 디렉토리별 로컬 nvimrc 파일 허용
+opt.exrc = true
+opt.secure = true
+
 -- disable some default providers
-for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
+for _, provider in ipairs { "node", "perl", "ruby" } do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
+
+g.python3_host_prog = "/Users/deptno/.pyenv/shims/python"
+-- g.loaded_python3_provider = 1
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"

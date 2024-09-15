@@ -823,5 +823,48 @@ M.wip = {
     }
   }
 }
-
+--
+----
+---vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>",
+vim.keymap.set("n", "<localleader>mi", ":<CR>", { silent = true, desc = "Initialize the plugin" })
+vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "" })
+vim.keymap.set("n", "<localleader>rl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "" })
+vim.keymap.set("n", "<localleader>rr", ":<CR>", { silent = true, desc = "" })
+vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "evaluate visual selection" })
+M.moltel_nvim = {
+  n = {
+    ["<leader>ji"] = {
+      function ()
+        vim.cmd('MoltenInit')
+      end,
+      "Initialize the plugin"
+    },
+    ["<leader>jo"] = {
+      function ()
+        vim.cmd('MoltenEvaluateOperator')
+      end,
+      "run operator selection"
+    },
+    ["<leader>jl"] = {
+      function ()
+        vim.cmd('MoltenEvaluateLine')
+      end,
+      "evaluate line"
+    },
+    ["<leader>jc"] = {
+      function ()
+        vim.cmd('MoltenReevaluateCell')
+      end,
+      "re-evaluate cell"
+    },
+  },
+  v = {
+    ["<leader>jv"] = {
+      function ()
+        vim.cmd('normal! :<C-u>MoltenEvaluateVisual<CR>gv')
+      end,
+      "evaluate visual selection"
+    },
+  },
+}
 return M
